@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  /* Crimson/Blue Theme Colors - Pure accurate and verified as per modern standard */
+  --color-text: #4b5563;
+  --color-text-h: #0f172a; /* Dark Blue-Black for important text */
+  --color-bg: #ffffff;
+  --color-border: #e2e8f0;
+  --color-accent: #1e3a8a; /* Deep Trust Blue */
+  --color-accent-secondary: #dc2626; /* Forensic Alert Red */
+  --color-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px;
+
+  /* Typography */
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --heading: 'Lexend', system-ui, sans-serif;
+
+  /* Basic Configuration */
+  font: 16px/150% var(--sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #94a3b8;
+    --color-text-h: #f8fafc;
+    --color-bg: #0a0c12;
+    --color-border: #1e293b;
+    --color-accent: #3b82f6;
+  }
+}
+
+body { margin: 0; }
+#root { width: 100%; }
+h1, h2, h3 { font-family: var(--heading); color: var(--color-text-h); margin: 0; }
+
+
+.cyber-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e3a8a, #000000, #1e1b4b);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
