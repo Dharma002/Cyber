@@ -4,16 +4,18 @@ import { AnimatePresence } from 'framer-motion';
 // Pages import
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage'; // Services Page (Jo aapne screenshot dikhaya)
-import CoursesPage from './pages/CoursesPage';   // Courses Detail Page
+import ServicesPage from './pages/ServicesPage'; 
+import CoursesPage from './pages/CoursesPage';   
 import EventsPage from './pages/EventsPage';
 import MembersPage from './pages/MembersPage';
 import InternshipPage from './pages/InternshipPage';
 import RegistrationPage from './pages/RegistrationPage';
-import LoginPage from './pages/LoginPage';       // Futuristic Login Page
+import LoginPage from './pages/LoginPage';   
+import ContactPage from './pages/ContactPage';
 
 // Components & Layout import
 import Layout from './components/Layout'; 
+import ScrollToTop from './components/ScrollToTop'; // Scroll reset component
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -40,6 +42,7 @@ const AnimatedRoutes = () => {
         {/* Auth System */}
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </AnimatePresence>
   );
@@ -48,6 +51,10 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
+      {/* 1. ScrollToTop ko Router ke andar sabse upar rakha hai */}
+      <ScrollToTop /> 
+      
+      {/* 2. Layout (Navbar/Footer) wrap kar raha hai AnimatedRoutes ko */}
       <Layout>
         <AnimatedRoutes />
       </Layout>

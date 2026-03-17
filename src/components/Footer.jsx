@@ -1,7 +1,9 @@
 import { Shield, Github, Twitter, Linkedin, Mail, ArrowUpRight, Terminal, Activity, Globe } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate add kiya
 
 const Footer = () => {
+  const navigate = useNavigate(); // Navigation function
+
   return (
     <footer className="relative bg-[#02040a] pt-24 pb-12 px-8 border-t border-white/5 overflow-hidden">
       
@@ -22,9 +24,6 @@ const Footer = () => {
                   alt="Crimex Intelligence"
                   className="w-full h-full object-contain rounded-full"
                   style={{ imageRendering: 'high-quality' }}
-                  onError={(e) => {
-                    e.target.src = "https://via.placeholder.com/150x150/000000/22D3EE?text=EMBLEM";
-                  }}
                 />
               </div>
             </div>
@@ -53,7 +52,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* QUICK LINKS - Now with working React Router Links */}
+        {/* QUICK LINKS */}
         <div className="md:col-span-2 space-y-6">
           <h4 className="text-cyan-500 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">// Quick_Access</h4>
           <ul className="space-y-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">
@@ -73,7 +72,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* SYSTEM LINKS */}
+        {/* INTELLIGENCE LINKS */}
         <div className="md:col-span-2 space-y-6">
           <h4 className="text-cyan-500 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">// Intelligence</h4>
           <ul className="space-y-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">
@@ -85,7 +84,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* CONTACT CARD */}
+        {/* FIXED CONTACT CARD */}
         <div className="md:col-span-3">
           <div className="p-6 rounded-3xl bg-[#0d0d12] border border-white/5 relative overflow-hidden group">
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#22d3ee 0.5px, transparent 0.5px)`, backgroundSize: '15px 15px' }}></div>
@@ -98,11 +97,14 @@ const Footer = () => {
               <p className="text-[10px] text-slate-500 uppercase tracking-widest mb-6 leading-relaxed">
                 Our command center is active 24/7 for forensic inquiries.
               </p>
-              <Link to="/contact">
-                <button className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-black uppercase text-[10px] tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all active:scale-95 border border-white/10">
-                  Contact Command
-                </button>
-              </Link>
+              
+              {/* Button logic updated to use navigate */}
+              <button 
+                onClick={() => navigate('/contact')}
+                className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-black uppercase text-[10px] tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all active:scale-95 border border-white/10 cursor-pointer"
+              >
+                Contact Command
+              </button>
             </div>
           </div>
         </div>
