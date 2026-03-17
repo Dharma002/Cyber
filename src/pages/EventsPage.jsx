@@ -23,7 +23,6 @@ const EventsPage = () => {
     { id: 6, title: "Cyber Law Webinar", date: "18", month: "JUN", location: "Online Portal", type: "Online", status: "Upcoming", tag: "Legal Desk", img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1000" }
   ];
 
-  // Filtering Logic
   const filteredEvents = useMemo(() => {
     if (activeTab === 'All Events') return eventData;
     return eventData.filter(event => event.status === activeTab);
@@ -32,20 +31,15 @@ const EventsPage = () => {
   return (
     <div className="min-h-screen bg-[#010208] text-white pt-40 pb-20 relative overflow-hidden">
       
-      {/* --- FULL SCREEN MATRIX RAIN --- */}
+      {/* Background Matrix Rain */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex justify-between px-4">
         {[...Array(25)].map((_, i) => (
           <motion.div
             key={i}
             initial={{ y: -500, opacity: 0 }}
-            animate={{ y: 1200, opacity: [0, 0.5, 0] }}
-            transition={{ 
-                duration: Math.random() * 8 + 4, 
-                repeat: Infinity, 
-                ease: "linear",
-                delay: Math.random() * 5 
-            }}
-            className="w-[1px] h-32 bg-gradient-to-b from-[#00f2ea] via-[#a855f7] to-transparent shadow-[0_0_15px_#00f2ea]"
+            animate={{ y: 1200, opacity: [0, 0.4, 0] }}
+            transition={{ duration: Math.random() * 8 + 4, repeat: Infinity, ease: "linear", delay: Math.random() * 5 }}
+            className="w-[1px] h-32 bg-gradient-to-b from-cyan-400 to-transparent"
           />
         ))}
       </div>
@@ -54,31 +48,30 @@ const EventsPage = () => {
         
         {/* HEADER SECTION */}
         <div className="text-center mb-16">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center justify-center gap-2 mb-4">
-             <Zap size={14} className="text-[#00f2ea] animate-pulse" />
+          <div className="flex items-center justify-center gap-2 mb-4">
+             <Zap size={14} className="text-[#00f2ea]" />
              <p className="text-[#00f2ea] font-mono text-[10px] font-black tracking-[0.5em] uppercase">Tactical_Operations // EVENTS</p>
-          </motion.div>
-          <motion.h1 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-none">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00f2ea] via-[#a855f7] to-[#00f2ea] drop-shadow-[0_0_15px_rgba(0,242,234,0.4)] text-white">Events</span>
-          </motion.h1>
+          </div>
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase text-white">
+            <span className="text-white block drop-shadow-lg">our</span>  
+            <span className="text-[#00f2ea]">Events</span>
+          </h1>
         </div>
 
-        {/* FILTER TABS (Now Functional) */}
+        {/* FILTER TABS */}
         <div className="flex flex-wrap justify-center gap-3 mb-20">
           {tabs.map((tab) => (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               key={tab.name}
               onClick={() => setActiveTab(tab.name)}
               className={`flex items-center gap-2 px-8 py-4 rounded-full text-[11px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeTab === tab.name 
-                ? 'bg-[#00f2ea] border-[#00f2ea] text-black shadow-[0_0_30px_rgba(0,242,234,0.6)]' 
-                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white hover:border-[#00f2ea]/50'
+                ? 'bg-[#00f2ea] border-[#00f2ea] text-black shadow-[0_0_20px_#00f2ea]' 
+                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
               }`}
             >
               {tab.icon} {tab.name}
-            </motion.button>
+            </button>
           ))}
         </div>
 
@@ -89,66 +82,67 @@ const EventsPage = () => {
               <motion.div 
                 layout
                 key={event.id}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4 }}
-                className="group bg-[#0d0d12]/90 backdrop-blur-xl border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-[#00f2ea]/40 transition-all duration-500 relative shadow-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="group bg-white rounded-[2.5rem] overflow-hidden shadow-2xl relative transition-all duration-500"
               >
-                <div className="h-64 relative overflow-hidden">
-                  <img src={event.img} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-100" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#010208] via-transparent to-transparent"></div>
+                {/* Image Section */}
+                <div className="h-56 relative overflow-hidden">
+                  <img src={event.img} alt={event.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors"></div>
                   
-                  <div className="absolute top-6 right-6 flex gap-2">
-                    <span className={`px-4 py-1.5 rounded-full text-[9px] font-black uppercase border-2 backdrop-blur-md ${event.status === 'Live' ? 'bg-green-500/20 border-green-500/50 text-green-400' : 'bg-[#00f2ea]/20 border-[#00f2ea]/50 text-[#00f2ea]'}`}>
+                  {/* Status Badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className="bg-black text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase border border-white/20 backdrop-blur-md">
                       {event.status}
                     </span>
                   </div>
-
-                  <div className="absolute bottom-6 left-8 flex items-center gap-2 text-[#00f2ea] text-[10px] font-black tracking-widest uppercase">
-                    <MapPin size={14} className="animate-bounce" /> {event.location}
-                  </div>
                 </div>
 
-                <div className="p-10 pt-6">
-                  <div className="flex justify-between items-center mb-8">
-                    <div className="flex flex-col leading-none">
-                      <span className="text-4xl font-black text-white tracking-tighter">{event.date}</span>
-                      <span className="text-[11px] font-bold text-[#00f2ea] tracking-[0.3em] mt-1">{event.month}</span>
+                {/* --- CONTENT AREA: AB EK DAM SAAF DIKHEGA --- */}
+                <div className="p-8 bg-white border-t border-gray-100">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex flex-col">
+                      <span className="text-4xl font-[1000] text-black leading-none tracking-tighter">{event.date}</span>
+                      <span className="text-[12px] font-bold text-cyan-600 uppercase tracking-widest mt-1">{event.month}</span>
                     </div>
-                    <p className="text-[12px] font-black text-white/40 uppercase group-hover:text-[#a855f7] transition-colors">{event.tag}</p>
+                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-gray-50 px-3 py-1 rounded-lg">
+                      {event.tag}
+                    </span>
                   </div>
 
-                  <h3 className="text-3xl font-black text-white italic uppercase tracking-tighter leading-none group-hover:text-[#00f2ea] transition-colors mb-4">
+                  {/* TITLE: Pure Black and Bold */}
+                  <h3 className="text-2xl font-[1000] text-black uppercase italic leading-tight group-hover:text-cyan-600 transition-colors">
                     {event.title}
                   </h3>
+
+                  {/* Location */}
+                  <div className="mt-6 flex items-center gap-2 text-gray-500 text-[11px] font-bold uppercase tracking-wider">
+                    <MapPin size={14} className="text-cyan-500" /> {event.location}
+                  </div>
                 </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00f2ea] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-[0_0_20px_#00f2ea]"></div>
+
+                {/* Bottom Border Glow */}
+                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-cyan-500"></div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
 
-        {/* --- GET IN TOUCH SECTION --- */}
+        {/* GET IN TOUCH */}
         <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative bg-gradient-to-br from-[#0a0b14] to-[#010208] border-2 border-[#00f2ea]/20 rounded-[3rem] p-12 md:p-20 text-center overflow-hidden group shadow-[0_0_50px_rgba(0,242,234,0.1)]"
+          onClick={() => navigate('/contact')}
+          whileHover={{ scale: 1.02 }}
+          className="bg-cyan-500 p-12 md:p-16 rounded-[3rem] text-center cursor-pointer shadow-[0_20px_50px_rgba(6,182,212,0.4)] transition-all group"
         >
-          <div className="relative z-10">
-            <div className="w-20 h-20 bg-[#00f2ea]/10 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-[#00f2ea]/30 group-hover:rotate-[360deg] transition-transform duration-1000">
-               <MessageSquare className="text-[#00f2ea]" size={40} />
-            </div>
-            <h2 className="text-4xl md:text-7xl font-black uppercase italic tracking-tighter mb-6 text-white">
-              Establish <span className="text-[#00f2ea]">Connection</span>
-            </h2>
-            <button 
-              onClick={() => navigate('/contact')}
-              className="group/btn relative flex items-center gap-4 bg-[#00f2ea] text-black px-12 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_50px_rgba(0,242,234,0.6)] transition-all mx-auto active:scale-95"
-            >
-              Contact Command Center <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform" />
-            </button>
+          <MessageSquare className="mx-auto text-black mb-6" size={48} />
+          <h2 className="text-4xl md:text-6xl font-[1000] text-black uppercase italic tracking-tighter mb-4">
+            Connect with <span className="text-white">Coordinators</span>
+          </h2>
+          <p className="text-black/70 font-bold uppercase tracking-widest text-sm mb-8">Registration & Partnership Signals Open</p>
+          <div className="inline-flex items-center gap-3 bg-black text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] group-hover:gap-6 transition-all">
+            Contact Now <ArrowRight size={18} />
           </div>
         </motion.div>
 

@@ -1,13 +1,19 @@
-import { Shield, Github, Twitter, Linkedin, Mail, ArrowUpRight, Terminal, Activity, Globe } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate add kiya
+import { Shield, Github, Twitter, Linkedin, Mail, ArrowUpRight, Terminal, Activity, Globe, MessageCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
-  const navigate = useNavigate(); // Navigation function
+  const navigate = useNavigate();
+
+  // 1. WhatsApp Redirect Function (Fixed Format)
+  const openWhatsApp = (e) => {
+    e.preventDefault(); // Default anchor behavior rokne ke liye
+    window.open("https://wa.me/919958214909", "_blank", "noopener,noreferrer");
+  };
 
   return (
     <footer className="relative bg-[#02040a] pt-24 pb-12 px-8 border-t border-white/5 overflow-hidden">
       
-      {/* 1. BACKGROUND DECOR */}
+      {/* BACKGROUND DECOR */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-600/5 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -23,7 +29,6 @@ const Footer = () => {
                   src="/logo.png" 
                   alt="Crimex Intelligence"
                   className="w-full h-full object-contain rounded-full"
-                  style={{ imageRendering: 'high-quality' }}
                 />
               </div>
             </div>
@@ -43,12 +48,34 @@ const Footer = () => {
             Advancing the frontier of <span className="text-white">Forensic Science</span>. Join the elite network of investigation professionals.
           </p>
 
+          {/* SOCIAL LINKS - AB YE WORK KARENGE */}
           <div className="flex gap-4">
-            {[<Twitter size={18}/>, <Linkedin size={18}/>, <Github size={18}/>, <Mail size={18}/>].map((icon, i) => (
-              <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-300">
-                {icon}
-              </a>
-            ))}
+            {/* WhatsApp Button */}
+            <button 
+              onClick={openWhatsApp} 
+              className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/5 transition-all duration-300 cursor-pointer"
+              title="WhatsApp Support"
+            >
+              <MessageCircle size={18}/>
+            </button>
+
+            {/* LinkedIn */}
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-300"
+            >
+              <Linkedin size={18}/>
+            </a>
+
+            {/* Email */}
+            <a 
+              href="mailto:admin@crimex.intel" 
+              className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-red-500/50 hover:text-red-500 hover:bg-red-500/5 transition-all duration-300"
+            >
+              <Mail size={18}/>
+            </a>
           </div>
         </div>
 
@@ -72,25 +99,25 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* INTELLIGENCE LINKS */}
+        {/* SYSTEM LINKS */}
         <div className="md:col-span-2 space-y-6">
           <h4 className="text-cyan-500 font-mono text-[10px] uppercase tracking-[0.3em] font-bold">// Intelligence</h4>
           <ul className="space-y-4 text-[11px] font-bold uppercase tracking-widest text-slate-500">
             {['Exam_Portal', 'Job_Alerts', 'Legal_Docs', 'Privacy_v2'].map((item) => (
-              <li key={item} className="hover:text-white cursor-pointer transition-colors flex items-center gap-2">
-                <div className="w-1 h-1 bg-cyan-900 rounded-full"></div> {item}
+              <li key={item} className="hover:text-white cursor-pointer transition-colors flex items-center gap-2 group">
+                <div className="w-1 h-1 bg-cyan-900 rounded-full group-hover:bg-cyan-400 transition-colors"></div> {item}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* FIXED CONTACT CARD */}
+        {/* EMERGENCY CONTACT CARD */}
         <div className="md:col-span-3">
-          <div className="p-6 rounded-3xl bg-[#0d0d12] border border-white/5 relative overflow-hidden group">
+          <div className="p-6 rounded-3xl bg-[#0d0d12] border border-white/5 relative overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: `radial-gradient(#22d3ee 0.5px, transparent 0.5px)`, backgroundSize: '15px 15px' }}></div>
             
             <div className="relative z-10">
-              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-500 mb-4 group-hover:scale-110 transition-transform">
                 <Terminal size={16} />
               </div>
               <h4 className="font-bold text-white mb-2 uppercase tracking-tighter">Emergency Node</h4>
@@ -98,10 +125,9 @@ const Footer = () => {
                 Our command center is active 24/7 for forensic inquiries.
               </p>
               
-              {/* Button logic updated to use navigate */}
               <button 
                 onClick={() => navigate('/contact')}
-                className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-black uppercase text-[10px] tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all active:scale-95 border border-white/10 cursor-pointer"
+                className="w-full py-3 bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-black uppercase text-[10px] tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all active:scale-95 border border-white/10 cursor-pointer"
               >
                 Contact Command
               </button>
