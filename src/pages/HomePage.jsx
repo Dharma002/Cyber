@@ -1,9 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, ShieldCheck } from 'lucide-react';
+import { Activity, ShieldCheck, Zap, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+// 1. Globe component ko yahan import kiya hai
+import CyberGlobe from '../components/CyberGlobe'; 
+
 const HomePage = () => {
+  const partners = [
+    { name: "Partner 1", logo: "/p1.png" },
+    { name: "Partner 2", logo: "/p2.png" },
+    { name: "Partner 3", logo: "/p3.png" },
+    { name: "Partner 4", logo: "/p4.png" },
+    { name: "Partner 5", logo: "/p5.png" },
+    { name: "Partner 6", logo: "/p6.png" },
+  ];
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" }
+    })
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-[#00020a] overflow-x-hidden">
       
@@ -12,135 +33,187 @@ const HomePage = () => {
             style={{ backgroundImage: `linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)`, backgroundSize: '50px 50px' }}>
       </div>
       
-      {/* NEON RADIAL GRADIENTS */}
       <div className="fixed top-[-20%] right-[-10%] w-[70%] h-[70%] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
       <div className="fixed bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      {/* 2. MAIN CONTENT WRAPPER */}
-      <div className="max-w-8xl mx-auto w-full min-h-screen flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 relative z-20 px-8 lg:px-20 py-32 lg:py-0">
+      <div className="max-w-8xl mx-auto w-full relative z-20 px-8 lg:px-20 py-20 lg:py-24">
         
-        {/* LEFT CONTENT */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center lg:text-left w-full lg:w-[55%] z-30"
+        {/* --- HERO SECTION --- */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 mb-20">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="text-center lg:text-left w-full lg:w-[55%] z-30"
+          >
+            <div className="inline-flex items-center gap-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 px-4 py-1.5 rounded-full mb-8 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
+              <Activity size={14} className="text-cyan-400 animate-pulse" />
+              <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">Cyber_Defense_Active</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl lg:text-[100px] font-black leading-[0.85] tracking-tighter uppercase mb-8 italic">
+              <span className="text-white block drop-shadow-lg">CRIMEX</span> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(34,211,238,0.4)] block mt-2">
+                INTELLIGENCE
+              </span>
+            </h1>
+
+            <p className="text-slate-400 text-sm md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-mono mb-12">
+              <span className="text-cyan-500 font-bold">{">"}</span> Deployment of advanced <span className="text-white">cyber-defense</span> protocols. Master the art of digital warfare.
+            </p>
+
+            <Link to="/register">
+              <button className="px-10 py-4 bg-gradient-to-r from-blue-700 to-blue-500 text-white font-black uppercase text-sm tracking-widest rounded-lg shadow-[0_10px_30px_rgba(29,78,216,0.4)] hover:scale-105 transition-all active:scale-95">
+                Register Now
+              </button>
+            </Link>
+          </motion.div>
+
+          {/* --- NEW CODE GLOBE SECTION --- */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="relative w-full lg:w-[45%] flex justify-center items-center h-[450px] lg:h-[600px]"
+          >
+             {/* Background Glow for Globe depth */}
+             <div className="absolute w-[350px] h-[350px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+             {/* Rendering the CyberGlobe component instead of image */}
+             <CyberGlobe />
+
+             {/* Scanning Laser Line (Optional decorative touch) */}
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-cyan-400/30 animate-scan z-30"></div>
+          </motion.div>
+        </div>
+
+        {/* --- MISSION SECTION --- */}
+        <motion.section 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative pt-20 pb-10"
         >
-          <div className="inline-flex items-center gap-2 bg-[#0ea5e9]/10 border border-[#0ea5e9]/30 px-4 py-1.5 rounded-full mb-8 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
-            <Activity size={14} className="text-cyan-400 animate-pulse" />
-            <span className="text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-[0.3em]">
-              Node_Status: Encrypted_Link_Active
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-[110px] font-black leading-[0.85] tracking-tighter uppercase mb-8 italic">
-            <span className="text-white block drop-shadow-lg">CRIMEX</span> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 drop-shadow-[0_0_20px_rgba(34,211,238,0.4)] block mt-2">
-              INTELLIGENCE
-            </span>
-          </h1>
-
-          <div className="flex items-center gap-4 mb-10 justify-center lg:justify-start">
-            <div className="h-[1px] w-20 bg-gradient-to-r from-cyan-500 to-transparent"></div>
-            <span className="font-mono text-cyan-500/80 text-[10px] tracking-[0.4em] uppercase">Security Level: Class-A</span>
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white italic">
+              OUR <span className="text-cyan-400">MISSION</span>
+            </h2>
+            <p className="text-slate-400 font-mono text-sm tracking-wide uppercase">
+              // Driving Digital Innovation
+            </p>
           </div>
 
-          <p className="text-slate-400 text-sm md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-mono mb-12">
-            <span className="text-cyan-500 font-bold">{">"}</span> Deployment of advanced <span className="text-white">cyber-defense</span> protocols. Master the art of digital warfare and secure the future.
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { t: "Security First", i: "🛡️", d: "Cybersecurity best practices.", c: "hover:border-blue-500/50" },
+              { t: "Innovation", i: "💡", d: "Fostering creativity & tech.", c: "hover:border-yellow-500/50" },
+              { t: "Community", i: "👥", d: "Inclusive growth for all.", c: "hover:border-purple-500/50" },
+              { t: "Career Dev", i: "🚀", d: "Empowering next-gen pros.", c: "hover:border-red-500/50" }
+            ].map((card, index) => (
+              <motion.div 
+                key={index}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className={`bg-[#0a0c10]/80 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center backdrop-blur-sm transition-all group ${card.c}`}
+              >
+                <div className="text-3xl mb-6 group-hover:scale-110 transition-transform">{card.i}</div>
+                <h4 className="text-xl font-bold mb-4 text-white uppercase italic">{card.t}</h4>
+                <p className="text-slate-400 text-xs font-mono">{card.d}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* --- WHY CHOOSE US SECTION --- */}
+        <section className="relative z-20 py-24 px-6">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="text-left">
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white italic">
+                WHY <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">CHOOSE US</span>
+              </h2>
+              <div className="h-1 w-32 bg-gradient-to-r from-yellow-500 to-transparent mt-4"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { t: "Expertise", i: <ShieldCheck size={28}/>, d: "Led by industry veterans in high-level defense.", l: "Level_01", color: "group-hover:text-yellow-400" },
+              { t: "Innovation", i: <Activity size={28}/>, d: "Utilizing AI and advanced protocols.", l: "Level_02", color: "group-hover:text-orange-400" },
+              { t: "Impact", i: <Target size={28}/>, d: "Securing thousands of digital assets.", l: "Level_03", color: "group-hover:text-cyan-400" }
+            ].map((item, index) => (
+              <motion.div 
+                key={index}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                className="relative group overflow-hidden rounded-3xl bg-gradient-to-b from-white/10 to-transparent p-[1px]"
+              >
+                <div className="bg-[#0a0c10] rounded-3xl p-10 h-full flex flex-col justify-between transition-all group-hover:bg-black/80 border border-white/5">
+                  <div>
+                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:border-white/30 text-white transition-all">
+                      {item.i}
+                    </div>
+                    <h3 className={`text-2xl font-black uppercase mb-4 italic transition-colors ${item.color}`}>{item.t}</h3>
+                    <p className="text-slate-400 font-mono text-sm leading-relaxed">{item.d}</p>
+                  </div>
+                  <div className="mt-8 text-[10px] font-bold tracking-[0.3em] text-white/20 uppercase">{item.l}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* --- INFINITE PARTNER LOGO SLIDER --- */}
+        <section className="relative z-20 py-16 bg-black/40 border-y border-white/5 overflow-hidden">
+          <p className="text-slate-500 font-mono text-[10px] uppercase tracking-[0.5em] text-center mb-12">
+            Trusted by Leading Organizations & Partners
           </p>
 
-          <Link to="/register">
-            <button className="px-10 py-4 bg-gradient-to-r from-blue-700 to-blue-500 text-white font-black uppercase text-sm tracking-widest rounded-lg shadow-[0_10px_30px_rgba(29,78,216,0.4)] hover:scale-105 transition-all active:scale-95">
-              Register Now
-            </button>
-          </Link>
-        </motion.div>
-
-        {/* RIGHT CONTENT: LARGE GLOBE WITH CIRCULAR LOGO CORE */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="relative w-full lg:w-[45%] flex justify-center items-center h-[400px] lg:h-[600px]"
-        >
-          {/* Outer Orbital Rings */}
-          <div className="absolute w-full h-full border border-cyan-500/10 rounded-full animate-[spin_30s_linear_infinite] opacity-30"></div>
-          <div className="absolute w-[85%] h-[85%] border-t-2 border-b-2 border-blue-500/20 rounded-full animate-[spin_20s_linear_infinite_reverse]"></div>
-
-          <div className="relative w-72 h-72 md:w-[480px] md:h-[480px] flex items-center justify-center">
-            {/* Super Glow behind Logo */}
-            <div className="absolute inset-4 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse-cyan"></div>
-            
-            {/* Globe Grid SVG */}
-            <svg viewBox="0 0 100 100" className="w-full h-full absolute z-10 opacity-40">
-              <circle cx="50" cy="50" r="48" fill="none" stroke="#22d3ee" strokeWidth="0.1" />
-              <motion.g animate={{ rotateY: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "50% 50%" }}>
-                {[0, 45, 90, 135].map((rot, i) => (
-                  <ellipse key={i} cx="50" cy="50" rx={48 * Math.abs(Math.cos(rot * Math.PI / 180))} ry="48" fill="none" stroke="#22d3ee" strokeWidth="0.15" opacity="0.3" />
-                ))}
-              </motion.g>
-            </svg>
-
-            {/* --- CENTRAL LOGO CORE: NOW 100% CIRCULAR --- */}
-            <div className="relative w-[75%] h-[75%] z-20 flex items-center justify-center">
-              
-              {/* Rotating Circular Dotted Frame */}
-              <div className="absolute inset-0 animate-spin-slow opacity-80">
-                <svg viewBox="0 0 100 100" className="w-full h-full text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
-                  <circle 
-                    cx="50" cy="50" r="48" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="1.5" 
-                    strokeDasharray="15 10" // This creates the tech-circle look
-                  />
-                </svg>
-              </div>
-
-              {/* Static Inner Thin Circle for extra detail */}
-              <div className="absolute inset-4 border border-cyan-500/30 rounded-full"></div>
-              
-              {/* Logo Container: Perfect Round Circle */}
-              <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center border-2 border-cyan-500/50 bg-[#00020a]/40 backdrop-blur-sm">
-                {/* Subtle Inner Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-900/10 to-[#00020a]/80 z-10"></div>
-                <img 
-                  src="/logo.png" 
-                  alt="Crimex Core Logo"
-                  className="w-[85%] h-[85%] object-contain relative z-20 animate-inner-pulse brightness-110 contrast-125 rounded-full"
-                />
-              </div>
-            </div>
-
-            {/* Orbiting Satellite (Moved to outer edge) */}
-            <motion.div animate={{ rotate: 360 }} transition={{ duration: 15, repeat: Infinity, ease: "linear" }} className="absolute inset-[-20px] z-40 pointer-events-none">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-cyan-500/10 backdrop-blur-md border border-cyan-500/50 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.6)]">
-                <ShieldCheck size={18} className="text-cyan-400" />
-              </div>
+          <div className="flex overflow-hidden">
+            <motion.div 
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="flex flex-nowrap shrink-0 gap-20 items-center px-10"
+            >
+              {[...partners, ...partners].map((partner, i) => (
+                <div key={i} className="flex items-center gap-4 shrink-0 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20 bg-white/5 p-2">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name} 
+                      className="w-full h-full object-contain"
+                      onError={(e) => { e.target.src = "https://cdn-icons-png.flaticon.com/512/2111/2111646.png" }} 
+                    />
+                  </div>
+                  <span className="text-white font-black uppercase text-xl md:text-2xl tracking-tighter">
+                    {partner.name}
+                  </span>
+                </div>
+              ))}
             </motion.div>
           </div>
-        </motion.div>
+        </section>
       </div>
 
-      {/* FOOTER DECORATION */}
-      <div className="absolute bottom-10 left-10 z-30 hidden lg:block">
-        <div className="flex flex-col gap-1">
-          <div className="h-[1px] w-32 bg-cyan-900"></div>
+      <footer className="relative z-30 py-10 text-center border-t border-white/5 bg-black/80">
           <p className="font-mono text-[9px] text-cyan-700 tracking-[0.6em] uppercase">Neural_Core_Active // CRIMEX_OS</p>
-        </div>
-      </div>
+      </footer>
 
-      {/* Optimized Animations */}
+      {/* Global CSS for Animations */}
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes inner-pulse { 
-          0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(34,211,238,0.2)); } 
-          50% { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(34,211,238,0.5)); } 
+        @keyframes scan {
+          0% { top: -10%; opacity: 0; }
+          50% { opacity: 1; }
+          100% { top: 110%; opacity: 0; }
         }
-        @keyframes pulse-cyan { 0%, 100% { opacity: 0.1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.2); } }
-        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
-        .animate-inner-pulse { animation: inner-pulse 4s ease-in-out infinite; }
-        .animate-pulse-cyan { animation: pulse-cyan 5s ease-in-out infinite; }
+        .animate-scan { animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
       `}} />
     </div>
   );
