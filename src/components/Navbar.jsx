@@ -22,51 +22,70 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-[100] bg-[#05060b]/95 backdrop-blur-md border-b border-cyan-500/10 font-sans">
-      <div className="max-w-[1600px] mx-auto px-4 md:px-6 h-[80px] md:h-[105px] flex justify-between items-center relative">
+   <header className="fixed top-0 w-full z-[100] bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
+  <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-[75px] md:h-[90px] flex justify-between items-center relative">
+        
         
         {/* LEFT: LOGO SECTION */}
-        <Link to="/" className="flex items-center gap-2 md:gap-5 group shrink-0">
-          <div className="relative flex items-center justify-center scale-75 md:scale-100">
-            <div className="absolute w-[85px] h-[85px] border border-cyan-500/20 rounded-full animate-[spin_10s_linear_infinite]" />
-            <div className="absolute w-[75px] h-[75px] border-t-2 border-cyan-500 rounded-full animate-spin" />
-            <div className="relative w-[65px] h-[65px] bg-black rounded-full p-1 z-10 border border-white/10 shadow-[0_0_30px_rgba(0,242,234,0.3)] overflow-hidden">
-               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain rounded-full transition-transform duration-700 group-hover:scale-110" />
-               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent h-1/4 w-full animate-scan" />
-            </div>
-          </div>
-          <h1 className="text-[14px] md:text-[18px] font-[1000] tracking-tighter uppercase">
-              <span className="text-white">Crimex</span>
-              <span className="ml-1 text-[#00f2ea] ">Intelligence</span>
-            </h1>
-        </Link>
+<Link to="/" className="flex items-center gap-3 md:gap-5 group shrink-0">
+      <div className="relative flex items-center justify-center scale-75 md:scale-100">
+        {/* Deep Glow behind logo */}
+        <div className="absolute w-[80px] h-[80px] bg-yellow-500/10 rounded-full blur-2xl group-hover:bg-yellow-500/20 transition-all duration-500" />
+        
+        {/* Outer Animated Ring (Yellow) */}
+        <div className="absolute w-[85px] h-[85px] border border-yellow-500/20 rounded-full animate-[spin_12s_linear_infinite]" />
+        
+        {/* Middle Spinning Ring (Yellow Glow) */}
+        <div className="absolute w-[75px] h-[75px] border-t-2 border-yellow-400 rounded-full animate-spin shadow-[0_0_15px_rgba(234,179,8,0.4)]" />
+        
+        {/* Logo Container - Clean Transparent with Inversion for Visibility */}
+        <div className="relative w-[65px] h-[65px] bg-transparent rounded-full p-1 z-10 overflow-hidden">
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 invert brightness-200" 
+            />
+            {/* Subtle Scanning Line (Yellow) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yellow-400/20 to-transparent h-1/4 w-full animate-scan opacity-40" />
+        </div>
+      </div>
+      
+      {/* Branding Text */}
+      <div className="flex flex-col">
+        <h1 className="text-[18px] md:text-[24px] font-black tracking-tighter uppercase italic">
+          <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">Crimex</span>
+          <span className="ml-1 text-yellow-400 drop-shadow-[0_0_12px_rgba(234,179,8,0.4)]">Intelligence</span>
+        </h1>
+        <div className="h-[1px] w-0 group-hover:w-full bg-yellow-400 transition-all duration-500 shadow-[0_0_10px_#eab308]" />
+      </div>
+    </Link>
 
         {/* CENTER: DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center bg-white/[0.03] border border-white/10 rounded-full px-3 py-1.5 gap-1">
+        <nav className="hidden lg:flex items-center bg-white/5 border border-white/10 rounded-full px-4 py-2 gap-2 backdrop-blur-md">
           {navLinks.map((item) => (
-            <div key={item.name} className="relative py-2" onMouseEnter={() => item.hasDrop && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
-              <Link to={item.path} className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full text-[10px] xl:text-[11px] font-black uppercase tracking-[0.1em] transition-all duration-300
-                  ${location.pathname === item.path ? 'text-white' : 'text-gray-400 hover:text-cyan-400'}`}>
+            <div key={item.name} className="relative py-1" onMouseEnter={() => item.hasDrop && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
+              <Link to={item.path} className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300
+                  ${location.pathname === item.path ? 'text-white' : 'text-gray-400 hover:text-yellow-400'}`}>
                 {item.icon}
                 <span>{item.name}</span>
                 {item.hasDrop && <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />}
                 {location.pathname === item.path && (
-                  <motion.div layoutId="nav-pill" className="absolute inset-0 bg-cyan-500/10 border border-cyan-500/30 rounded-full -z-10" />
+                  <motion.div layoutId="nav-pill" className="absolute inset-0 bg-yellow-500/10 border border-yellow-500/30 rounded-full -z-10" />
                 )}
               </Link>
 
               {/* DESKTOP DROPDOWN */}
               <AnimatePresence>
                 {item.hasDrop && activeDropdown === item.name && (
-                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-[#0a0b14] border border-cyan-500/30 rounded-2xl overflow-hidden shadow-2xl z-[110]">
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-[#0a0b14] border border-yellow-500/30 rounded-2xl overflow-hidden shadow-2xl z-[110]">
                     <div className="flex flex-col p-2">
                       {item.name === 'Services' ? (
-                        <Link to="/courses" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-400 hover:text-white hover:bg-cyan-500/10 rounded-xl transition-all uppercase tracking-wider group">
-                          <BookOpen size={16} className="group-hover:text-cyan-400" /> Academy Portal
+                        <Link to="/courses" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-400 hover:text-white hover:bg-yellow-500/10 rounded-xl transition-all uppercase tracking-wider group">
+                          <BookOpen size={16} className="group-hover:text-yellow-400" /> Academy Portal
                         </Link>
                       ) : (
-                        <Link to="/contact" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-400 hover:text-white hover:bg-cyan-500/10 rounded-xl transition-all uppercase tracking-wider group">
-                          <Mail size={16} className="group-hover:text-cyan-400" /> Security Hub
+                        <Link to="/contact" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-400 hover:text-white hover:bg-yellow-500/10 rounded-xl transition-all uppercase tracking-wider group">
+                          <Mail size={16} className="group-hover:text-yellow-400" /> Security Hub
                         </Link>
                       )}
                     </div>
@@ -93,10 +112,10 @@ const Navbar = () => {
           
           {/* MOBILE TOGGLE BUTTON */}
           <button 
-            className="lg:hidden text-white p-2.5 bg-white/5 border border-white/10 rounded-full hover:bg-cyan-500/20 transition-all z-[120]" 
+            className="lg:hidden text-white p-2.5 bg-white/5 border border-white/10 rounded-full hover:bg-yellow-500/10 transition-all z-[120]" 
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X size={22} className="text-cyan-400" /> : <Menu size={22} />}
+            {isOpen ? <X size={22} className="text-yellow-400" /> : <Menu size={22} />}
           </button>
         </div>
 
@@ -116,7 +135,7 @@ const Navbar = () => {
                 className="fixed top-0 right-0 h-screen w-[280px] bg-[#0a0b14] border-l border-white/10 z-[105] p-8 flex flex-col shadow-[-20px_0_50px_rgba(0,0,0,0.8)] lg:hidden"
               >
                 <div className="mt-16 space-y-6">
-                  <p className="text-cyan-500 font-mono text-[9px] tracking-[0.5em] uppercase border-b border-white/5 pb-4 font-black">Control_Panel</p>
+                  <p className="text-yellow-400 font-mono text-[9px] tracking-[0.5em] uppercase border-b border-white/5 pb-4 font-black">Control_Panel</p>
                   
                   <div className="flex flex-col gap-2">
                     {navLinks.map((link) => (
@@ -125,7 +144,7 @@ const Navbar = () => {
                         to={link.path} 
                         onClick={closeMenu}
                         className={`flex items-center gap-4 p-4 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all
-                          ${location.pathname === link.path ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+                          ${location.pathname === link.path ? 'bg-yellow-500 text-black shadow-lg shadow-yellow-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
                       >
                         {link.icon}
                         {link.name}
@@ -133,7 +152,7 @@ const Navbar = () => {
                     ))}
                   </div>
 
-                  <div className="pt-6 flex flex-col gap-3 border-t border-white/5">
+                  <div className="pt-6 flex flex-col gap-3 border-t border-black/5">
                     <Link to="/register" onClick={closeMenu} className="w-full py-4 bg-gradient-to-r from-[#ff4d00] to-[#ff006e] rounded-2xl text-center text-[11px] font-black uppercase tracking-widest text-white">Registration</Link>
                     <Link to="/login" onClick={closeMenu} className="w-full py-4 bg-[#00f2ea] rounded-2xl text-center text-[11px] font-black uppercase text-black">Login Access</Link>
                   </div>

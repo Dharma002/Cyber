@@ -1,135 +1,168 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Mail, ShieldCheck, UserCircle2 } from 'lucide-react';
+// 1. Icons import fix (WhatsApp ke liye MessageSquare ya Phone use hota hai Lucide mein)
+import { Linkedin, Instagram, Mail, ShieldCheck, MessageSquare } from 'lucide-react';
 
-const TeamCard = ({ name, role, image, tags, company }) => (
+const TeamCard = ({ name, role, image, tags, company, socials }) => (
   <motion.div 
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    whileHover={{ y: -10 }}
-    className="group relative bg-gradient-to-b from-[#0d1117] to-[#02040a] border border-white/5 p-1 rounded-[2.5rem] overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-cyan-500/10 transition-shadow duration-500"
+    whileHover={{ y: -15, scale: 1.02 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    className="group relative bg-[#05070a] border border-white/5 p-1 rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-cyan-500/30 h-full flex flex-col"
   >
-    {/* Animated Border Glow on Hover */}
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite] pointer-events-none"></div>
+    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
-    <div className="relative bg-[#0d1117]/90 backdrop-blur-3xl p-8 rounded-[2.4rem] h-full flex flex-col items-center">
+    <div className="relative bg-[#0a0c12]/80 backdrop-blur-3xl p-10 rounded-[2.9rem] h-full flex flex-col items-center flex-1">
       
-      {/* 1. UPDATED PHOTO STYLE: Smooth Rounded Square with Glowing Frame */}
-      <div className="relative mb-8">
-        {/* Glowing Background Ring */}
-        <div className="absolute inset-[-15px] rounded-3xl bg-cyan-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        
-        {/* Image Container with Stylish Border */}
-        <div className="relative w-40 h-40 rounded-3xl border-2 border-cyan-500/20 group-hover:border-cyan-500/60 p-2 overflow-hidden bg-black/30 transition-colors duration-500">
-          <div className="absolute inset-2 bg-black/50 rounded-2xl flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-            <UserCircle2 className="w-16 h-16 text-cyan-500/70" />
-          </div>
+      {/* PHOTO SECTION */}
+      <div className="relative mb-12">
+        <div className="absolute inset-[-25px] rounded-full bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition-all duration-700 animate-pulse" />
+        <div className="relative w-56 h-56 rounded-full border-4 border-white/5 group-hover:border-cyan-500/50 p-2 overflow-hidden bg-black/40 transition-all duration-500 shadow-2xl">
           <img 
             src={image} 
             alt={name} 
-            className="relative w-full h-full object-cover rounded-2xl grayscale-[50%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 z-20"
+            className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-1000"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent h-full w-full animate-scan opacity-0 group-hover:opacity-100" />
         </div>
-        
-        {/* Status indicator */}
-        <div className="absolute top-0 right-0 h-4 w-4 bg-green-500 rounded-full border-2 border-[#0d1117] animate-pulse"></div>
+        <div className="absolute bottom-4 right-6 h-12 w-12 bg-cyan-500 rounded-full border-4 border-[#0a0c12] flex items-center justify-center shadow-2xl transform group-hover:scale-110 group-hover:rotate-[360deg] transition-all duration-1000">
+          <ShieldCheck className="w-6 h-6 text-black" />
+        </div>
       </div>
 
-      {/* 2. TEXT STYLE: Pure White with Neon Glow */}
-      <div className="space-y-2 mb-6 text-center w-full">
-        <h3 
-          className="text-2xl font-black tracking-tight uppercase"
-          style={{ 
-            color: '#FFFFFF', 
-            textShadow: '0 0 15px rgba(0, 242, 234, 0.4)' 
-          }}
-        >
+      {/* IDENTITY */}
+      <div className="space-y-3 mb-8 text-center w-full">
+        <h3 className="text-3xl font-black tracking-tighter text-white uppercase italic group-hover:text-cyan-400 transition-colors duration-300">
           {name}
         </h3>
-        <div className="flex items-center justify-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-cyan-400" />
-          <p className="text-cyan-400 font-bold text-xs uppercase tracking-[0.2em]">{role}</p>
+        <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
+          <p className="text-white font-black text-xs uppercase tracking-[0.25em]">{role}</p>
         </div>
-        <p className="text-gray-500 text-[10px] font-mono uppercase tracking-widest">{company}</p>
+        <p className="text-slate-300 text-[11px] font-mono uppercase tracking-[0.4em] pt-2">{company}</p>
       </div>
 
-      {/* 3. TAGS: Micro-Chips Style */}
-      <div className="flex flex-wrap justify-center gap-2 mt-auto">
+      {/* SKILLS */}
+      <div className="flex flex-wrap justify-center gap-2 mt-auto pb-6">
         {tags.map((tag, i) => (
-          <span key={i} className="text-[10px] font-medium text-gray-400 border border-white/5 bg-white/5 px-3 py-1 rounded-md hover:border-cyan-500/40 hover:text-cyan-400 transition-all cursor-crosshair">
+          <span key={i} className="text-[9px] font-black text-white border border-white/10 bg-white/5 px-4 py-1.5 rounded-full hover:border-cyan-500/50 hover:bg-cyan-500/5 transition-all uppercase tracking-widest">
             {tag}
           </span>
         ))}
       </div>
 
-      {/* Social Icons Overlay - Ab neeche display honge visually better lagne ke liye */}
-      <div className="flex gap-4 mt-6 border-t border-white/5 pt-4 w-full justify-center">
-        <Linkedin className="w-4 h-4 text-gray-500 hover:text-cyan-400 cursor-pointer" />
-        <Twitter className="w-4 h-4 text-gray-500 hover:text-cyan-400 cursor-pointer" />
-        <Mail className="w-4 h-4 text-gray-500 hover:text-cyan-400 cursor-pointer" />
+      {/* 2. WORKING SOCIAL LINKS */}
+      <div className="flex gap-6 mt-4 border-t border-white/5 pt-8 w-full justify-center">
+        {/* LinkedIn */}
+        <motion.a 
+          href={socials.linkedin} target="_blank" rel="noopener noreferrer"
+          whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
+        >
+          <Linkedin className="w-5 h-5 text-slate-500 group-hover/icon:text-cyan-400 transition-colors" />
+        </motion.a>
+
+        {/* WhatsApp - Mobile number link format: https://wa.me/number */}
+        <motion.a 
+          href={socials.whatsapp} target="_blank" rel="noopener noreferrer"
+          whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
+        >
+          <MessageSquare className="w-5 h-5 text-slate-500 group-hover/icon:text-green-500 transition-colors" />
+        </motion.a>
+
+        {/* Instagram */}
+        <motion.a 
+          href={socials.instagram} target="_blank" rel="noopener noreferrer"
+          whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
+        >
+          <Instagram className="w-5 h-5 text-slate-500 group-hover/icon:text-pink-500 transition-colors" />
+        </motion.a>
+
+        {/* Mail */}
+        <motion.a 
+          href={`mailto:${socials.email}`}
+          whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
+        >
+          <Mail className="w-5 h-5 text-slate-500 group-hover/icon:text-white transition-colors" />
+        </motion.a>
       </div>
     </div>
   </motion.div>
 );
 
 const MembersPage = () => {
+  // 3. Updated data with actual links
   const team = [
     {
       name: "Mr. Anmol Kumar",
       role: "President & Director",
-      company: "Cyber Shakti",
+      company: "Crimex intelligence",
       image: "/anmol.jpeg",
-      tags: ["Leadership", "Innovation", "Vulnerability Research"]
+      tags: ["Leadership", "Innovation", "Research"],
+      socials: {
+        linkedin: "https://linkedin.com/in/yourprofile",
+        whatsapp: "https://wa.me/91XXXXXXXXXX", // Format: 91 + phone number
+        instagram: "https://instagram.com/yourprofile",
+        email: "anmol@crimex.com"
+      }
     },
     {
       name: "Ms. Ayushi Singh",
       role: "Co-Founder",
-      company: "Cyber Shakti",
+      company: "Crimex intelligence",
       image: "/ayushi.jpeg",
-      tags: ["Security Ops", "Intelligence", "Strategic Vision"]
+      tags: ["Security Ops", "Intelligence", "Vision"],
+      socials: {
+        linkedin: "https://linkedin.com/in/yourprofile",
+        whatsapp: "https://wa.me/91XXXXXXXXXX",
+        instagram: "https://instagram.com/yourprofile",
+        email: "ayushi@crimex.com"
+      }
     }
   ];
 
   return (
     <div className="min-h-screen bg-[#02040a] text-white pt-32 pb-20 px-6 relative overflow-hidden">
-      
-      {/* Dynamic Background Noise */}
-      <div className="absolute inset-0 z-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" 
+           style={{ backgroundImage: `linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px)`, backgroundSize: '40px 40px' }}>
+      </div>
 
-      {/* Glowing Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-cyan-500/10 blur-[150px] rounded-full"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[150px] rounded-full"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-500/10 blur-[150px] rounded-full"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[150px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24 flex flex-col items-center">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-block px-4 py-1 border border-cyan-500/20 bg-cyan-500/5 rounded-full mb-6">
-            <span className="text-cyan-500 font-mono text-[10px] font-bold tracking-[0.3em] uppercase">Core Directory 2026</span>
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-6 py-2 border border-cyan-500/20 bg-cyan-500/5 rounded-full mb-8 shadow-[0_0_20px_rgba(34,211,238,0.1)]"
+          >
+            <span className="text-cyan-400 font-mono text-[11px] font-black tracking-[0.4em] uppercase">Core Directory // 2026</span>
           </motion.div>
-          <h2 className="text-6xl md:text-8xl font-black italic tracking-tighter uppercase leading-none mb-8 text-center">
-  {/* Yahan 'Expert' ko dark aur premium gradient diya hai */}
-  <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-600 via-blue-800 to-indigo-950 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-    Expert
-  </span>{" "}
-  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-blue-600">
-    Squad
-  </span>
-</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-transparent"></div>
+          
+          <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter uppercase leading-none mb-10 text-center whitespace-nowrap">
+            <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Expert</span>{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]">Squad</span>
+          </h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="flex flex-wrap justify-center gap-12 items-stretch">
           {team.map((member, index) => (
-            <TeamCard key={index} {...member} />
+            <div key={index} className="w-full md:w-[calc(50%-24px)] lg:w-[calc(33.33%-32px)] max-w-md flex flex-col">
+              <TeamCard {...member} />
+            </div>
           ))}
         </div>
       </div>
 
+      <footer className="relative z-30 py-10 mt-20 text-center border-t border-white/5 opacity-40">
+          <p className="font-mono text-[9px] text-cyan-700 tracking-[0.6em] uppercase italic">Personnel_Database // CRIMEX_OS</p>
+      </footer>
+
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
+        @keyframes scan { 0% { top: -100%; } 100% { top: 100%; } }
+        .animate-scan { animation: scan 3s linear infinite; }
       `}} />
     </div>
   );

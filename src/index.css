@@ -31,9 +31,9 @@
   }
 }
 
-body { margin: 0; }
+body { margin: 0; background-color: #00020a; }
 #root { width: 100%; }
-h1, h2, h3 { font-family: var(--heading); color: var(--color-text-h); margin: 0; }
+h1, h2, h3 { font-family: var(--heading); color: #ffffff; margin: 0; }
 
 
 .cyber-bg {
