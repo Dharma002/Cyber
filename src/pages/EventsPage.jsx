@@ -15,8 +15,8 @@ const EventsPage = () => {
   ];
 
   const eventData = [
-    { id: 1, title: "CyberSec Hackathon 2026", date: "15-17", month: "MAR", location: "New Delhi Chapter", type: "Hybrid", status: "Live", tag: "CyberZero", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000" },
-    { id: 2, title: "Bug Bounty Workshop", date: "05", month: "APR", location: "Uttar Pradesh Chapter", type: "Online", status: "Upcoming", tag: "CyberZero UP", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000" },
+    { id: 1, title: "CyberSec Hackathon 2026", date: "15-17", month: "MAR", location: "New Delhi Chapter", type: "Hybrid", status: "Live", tag: "INTEL_CORE ", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000" },
+    { id: 2, title: "Bug Bounty Workshop", date: "05", month: "APR", location: "Uttar Pradesh Chapter", type: "Online", status: "Upcoming", tag: " CRIME_LAB ", img: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000" },
     { id: 3, title: "Cryptography Masterclass", date: "20", month: "APR", location: "Maharashtra Chapter", type: "Offline", status: "Past Events", tag: "MH Core", img: "https://images.unsplash.com/photo-1510511459019-5dee595ec004?q=80&w=1000" },
     { id: 4, title: "AI Security Summit", date: "12", month: "MAY", location: "Bangalore Hub", type: "Hybrid", status: "Upcoming", tag: "AI Intel", img: "https://images.unsplash.com/photo-1558494949-ef010cbdcc48?q=80&w=1000" },
     { id: 5, title: "Digital Forensics Camp", date: "02-04", month: "JUN", location: "Lucknow Base", type: "Offline", status: "Live", tag: "Forensic Core", img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1000" },
@@ -46,14 +46,14 @@ const EventsPage = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* HEADER SECTION */}
+        {/* HEADER SECTION - "Our Events" in one line */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
              <Zap size={14} className="text-[#00f2ea]" />
              <p className="text-[#00f2ea] font-mono text-[10px] font-black tracking-[0.5em] uppercase">Tactical_Operations // EVENTS</p>
           </div>
-          <h1 className="text-5xl md:text-8xl font-black tracking-tighter uppercase text-white">
-            <span className="text-white block drop-shadow-lg">our</span>  
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase text-white whitespace-nowrap">
+            <span className="text-white drop-shadow-lg">our </span>  
             <span className="text-[#00f2ea]">Events</span>
           </h1>
         </div>
@@ -64,10 +64,10 @@ const EventsPage = () => {
             <button
               key={tab.name}
               onClick={() => setActiveTab(tab.name)}
-              className={`flex items-center gap-2 px-8 py-4 rounded-full text-[11px] font-black uppercase tracking-widest transition-all border-2 ${
+              className={`flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-widest transition-all border-2 ${
                 activeTab === tab.name 
                 ? 'bg-[#00f2ea] border-[#00f2ea] text-black shadow-[0_0_20px_#00f2ea]' 
-                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'
+                : 'bg-white/5 border-white/10 text-gray-500 hover:text-white hover:border-white/30'
               }`}
             >
               {tab.icon} {tab.name}
@@ -78,7 +78,7 @@ const EventsPage = () => {
         {/* EVENTS GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32 min-h-[400px]">
           <AnimatePresence mode="popLayout">
-            {filteredEvents.map((event, index) => (
+            {filteredEvents.map((event) => (
               <motion.div 
                 layout
                 key={event.id}
@@ -100,7 +100,7 @@ const EventsPage = () => {
                   </div>
                 </div>
 
-                {/* --- CONTENT AREA: AB EK DAM SAAF DIKHEGA --- */}
+                {/* CONTENT AREA */}
                 <div className="p-8 bg-white border-t border-gray-100">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex flex-col">
@@ -112,7 +112,7 @@ const EventsPage = () => {
                     </span>
                   </div>
 
-                  {/* TITLE: Pure Black and Bold */}
+                  {/* TITLE */}
                   <h3 className="text-2xl font-[1000] text-black uppercase italic leading-tight group-hover:text-cyan-600 transition-colors">
                     {event.title}
                   </h3>
@@ -130,18 +130,23 @@ const EventsPage = () => {
           </AnimatePresence>
         </div>
 
-        {/* GET IN TOUCH */}
+        {/* GET IN TOUCH SECTION */}
         <motion.div 
           onClick={() => navigate('/contact')}
-          whileHover={{ scale: 1.02 }}
-          className="bg-cyan-500 p-12 md:p-16 rounded-[3rem] text-center cursor-pointer shadow-[0_20px_50px_rgba(6,182,212,0.4)] transition-all group"
+          whileHover={{ scale: 1.01 }}
+          className="bg-[#00f2ea] p-10 md:p-16 rounded-[3rem] text-center cursor-pointer shadow-[0_20px_50px_rgba(0,242,234,0.3)] transition-all group overflow-hidden relative"
         >
+          {/* Subtle background detail */}
+          <div className="absolute top-0 right-0 p-4 opacity-10">
+             <Zap size={150} className="text-black" />
+          </div>
+
           <MessageSquare className="mx-auto text-black mb-6" size={48} />
-          <h2 className="text-4xl md:text-6xl font-[1000] text-black uppercase italic tracking-tighter mb-4">
+          <h2 className="text-4xl md:text-6xl font-[1000] text-black uppercase italic tracking-tighter mb-4 relative z-10">
             Connect with <span className="text-white">Coordinators</span>
           </h2>
-          <p className="text-black/70 font-bold uppercase tracking-widest text-sm mb-8">Registration & Partnership Signals Open</p>
-          <div className="inline-flex items-center gap-3 bg-black text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] group-hover:gap-6 transition-all">
+          <p className="text-black/70 font-bold uppercase tracking-widest text-sm mb-8 relative z-10">Registration & Partnership Signals Open</p>
+          <div className="inline-flex items-center gap-3 bg-black text-white px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] group-hover:gap-6 transition-all relative z-10">
             Contact Now <ArrowRight size={18} />
           </div>
         </motion.div>

@@ -79,12 +79,12 @@ const TeamCard = ({ name, role, image, tags, company, socials }) => (
         </motion.a>
 
         {/* Mail */}
-        <motion.a 
+        { /*<motion.a 
           href={`mailto:${socials.email}`}
           whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
         >
           <Mail className="w-5 h-5 text-slate-500 group-hover/icon:text-white transition-colors" />
-        </motion.a>
+        </motion.a> */}
       </div>
     </div>
   </motion.div>
@@ -100,10 +100,10 @@ const MembersPage = () => {
       image: "/anmol.jpeg",
       tags: ["Leadership", "Innovation", "Research"],
       socials: {
-        linkedin: "https://linkedin.com/in/yourprofile",
-        whatsapp: "https://wa.me/91XXXXXXXXXX", // Format: 91 + phone number
-        instagram: "https://instagram.com/yourprofile",
-        email: "anmol@crimex.com"
+        linkedin: "https://linkedin.com/in/Anmol Kumar",
+        whatsapp: "https://wa.me/918265826528", // Format: 91 + phone number
+        instagram: "https://instagram.com/anmolkumar_techlab",
+        email: "info@cybershaktifoundation.org"
       }
     },
     {
@@ -114,7 +114,7 @@ const MembersPage = () => {
       tags: ["Security Ops", "Intelligence", "Vision"],
       socials: {
         linkedin: "https://linkedin.com/in/yourprofile",
-        whatsapp: "https://wa.me/91XXXXXXXXXX",
+        whatsapp: "https://wa.me/919958214909",
         instagram: "https://instagram.com/yourprofile",
         email: "ayushi@crimex.com"
       }

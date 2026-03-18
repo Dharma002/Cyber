@@ -1,165 +1,177 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, ShieldCheck, Cpu, Fingerprint, Lock, Zap, ChevronRight, Activity } from 'lucide-react';
+import { User, Mail, Phone, Lock, Zap, Activity, Globe, ShieldAlert, Database, ChevronRight, Loader2, CheckCircle2, RefreshCcw, Cpu } from 'lucide-react';
 
 const RegistrationPage = () => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [status, setStatus] = useState('idle'); 
 
-  // Unique Animation Variants: Glitch & Slide
-  const containerVariants = {
-    hidden: { opacity: 0, x: 100, skewX: 10 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
-      skewX: 0,
-      transition: { duration: 0.6, ease: "easeOut", staggerChildren: 0.1 } 
-    }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(!formData.name || !formData.email || !formData.phone) return alert("All fields required!");
+    setStatus('loading');
+    setTimeout(() => {
+      setStatus('success');
+    }, 2000);
+  };
+
+  // RESET FUNCTION: Wapas normal karne ke liye
+  const resetForm = () => {
+    setFormData({ name: '', email: '', phone: '' });
+    setStatus('idle');
   };
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6 flex items-center justify-center relative overflow-hidden bg-[#00020a]">
+    <div className="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center relative overflow-hidden bg-[#00020a]">
       
-      {/* --- UNIQUE BACKGROUND: BINARY STREAM & STATIC --- */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none select-none overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-        <div className="flex justify-around w-full h-full text-[#00f2ea] font-mono text-[10px] leading-none opacity-10">
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{ y: ["0%", "-100%"] }}
-              transition={{ duration: Math.random() * 10 + 10, repeat: Infinity, ease: "linear" }}
-              className="whitespace-nowrap"
-              style={{ writingMode: 'vertical-rl' }}
-            >
-              01010110 11010010 CRIMEX_CORE_SHAKTI_IDENT_0x99 {i} 101010110
-            </motion.div>
-          ))}
-        </div>
+      {/* BACKGROUND DECOR */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/5 blur-[120px] rounded-full animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full" />
       </div>
 
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="w-full max-w-4xl relative z-10 grid md:grid-cols-5 gap-0 shadow-[0_0_100px_rgba(0,242,234,0.1)] rounded-[2rem] overflow-hidden border border-white/5"
-      >
+      <div className="max-w-[1400px] w-full mx-auto grid lg:grid-cols-12 gap-10 relative z-10">
         
-        {/* LEFT PANEL: Status & Info (Unique to this page) */}
-        <div className="md:col-span-2 bg-[#0a0b14] p-8 border-r border-white/5 flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-          
-          <div>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center border border-cyan-500/30">
-                <Fingerprint className="text-cyan-400 animate-pulse" size={24} />
-              </div>
-              <span className="text-[10px] font-mono text-cyan-500 font-black tracking-[0.3em] uppercase">User_Enrollment</span>
+        {/* LEFT: MAIN INFO (3 Columns) */}
+        <div className="lg:col-span-3 space-y-8">
+            <div>
+                <div className="flex items-center gap-2 mb-4 text-[#00f2ea]">
+                    <Zap size={16} className="animate-bounce" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.4em]">Gate_Access_v4</span>
+                </div>
+                <h1 className="text-7xl font-[1000] text-white uppercase italic tracking-tighter leading-[0.9]">
+                  Agent <br /> <span className="text-[#00f2ea]">Portal</span>
+                </h1>
+                <p className="mt-6 text-gray-500 text-xs font-bold uppercase leading-relaxed tracking-wider">
+                  Deploy your digital identity into the secure grid. Authorized agents only. 
+                </p>
             </div>
 
-            <h2 className="text-4xl font-black text-white leading-tight uppercase italic mb-4">
-              Agent <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Registration</span>
-            </h2>
-            <p className="text-gray-500 text-xs font-mono leading-relaxed uppercase tracking-tighter">
-              Authorized access only. By deploying your identity, you join the elite cyber-shakti grid.
-            </p>
-          </div>
-
-          <div className="space-y-4 mt-8">
-            {['Bio-Link Active', 'Encryption Level: AES-256', 'Node: Lucknow_Server'].map((stat, i) => (
-              <div key={i} className="flex items-center gap-2 text-[9px] font-mono text-cyan-400/60 uppercase">
-                <Zap size={10} /> {stat}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* RIGHT PANEL: The Form */}
-        <div className="md:col-span-3 bg-black/40 backdrop-blur-3xl p-8 md:p-12 relative">
-          <form className="space-y-5">
-            <motion.div variants={itemVariants} className="space-y-2 group">
-              <label className="text-[10px] font-mono text-gray-500 uppercase tracking-widest ml-1">Codename_ID</label>
-              <div className="relative">
-                <Terminal className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-900 group-focus-within:text-cyan-400 transition-colors" size={16} />
-                <input 
-                  type="text" 
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                  placeholder="EX: GHOST_NODE_01" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-cyan-500/50 transition-all text-white font-mono placeholder:text-slate-800" 
-                />
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="space-y-2 group">
-              <label className="text-[10px] font-mono text-gray-500 uppercase tracking-widest ml-1">Comms_Frequency</label>
-              <div className="relative">
-                <Cpu className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-900 group-focus-within:text-cyan-400 transition-colors" size={16} />
-                <input type="email" placeholder="IDENTITY@SECURE.COM" className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-cyan-500/50 transition-all text-white font-mono placeholder:text-slate-800" />
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="space-y-2 group">
-              <label className="text-[10px] font-mono text-gray-500 uppercase tracking-widest ml-1">Selection_Module</label>
-              <select className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-sm focus:outline-none focus:border-cyan-500/50 transition-all text-slate-400 font-mono appearance-none">
-                <option>DIGITAL_FORENSICS</option>
-                <option>OFFENSIVE_CYBER_OPS</option>
-                <option>OSINT_INTELLIGENCE</option>
-              </select>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="pt-4 flex flex-col gap-4">
-               <div className="flex items-center gap-3 p-4 bg-white/5 rounded-xl border border-white/5 group hover:border-cyan-500/30 transition-all cursor-pointer">
-                  <div className="relative flex items-center justify-center">
-                    <input type="checkbox" className="peer w-5 h-5 opacity-0 absolute cursor-pointer z-10" />
-                    <div className="w-5 h-5 border-2 border-cyan-500/30 rounded peer-checked:bg-cyan-500 peer-checked:border-cyan-500 transition-all"></div>
-                    <ShieldCheck className="absolute text-black scale-0 peer-checked:scale-100 transition-transform" size={14} />
-                  </div>
-                  <p className="text-[10px] font-mono text-slate-500 uppercase leading-tight">
-                    Accept <span className="text-cyan-400">Ethical_Usage_Agreement</span>
-                  </p>
-               </div>
-
-               <motion.button 
-                whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(0,242,234,0.3)" }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                className="w-full relative py-5 bg-[#00f2ea] text-black font-black uppercase tracking-[0.4em] text-xs overflow-hidden rounded-xl transition-all"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  <Lock size={16} /> Deploy_Identity
-                </span>
-                <motion.div 
-                  animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                />
-              </motion.button>
-            </motion.div>
-          </form>
-
-          {/* Bottom Decor Text */}
-          <div className="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
-            <span className="text-[8px] font-mono text-gray-600 uppercase tracking-widest italic flex items-center gap-2">
-               <Activity size={10} className="animate-bounce" /> Waiting_for_input...
-            </span>
-            <div className="flex gap-1">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-cyan-500/20 rounded-full"></div>
-              ))}
+            <div className="space-y-4 pt-10 border-t border-white/5">
+                <h3 className="text-[#00f2ea] text-[10px] font-black uppercase tracking-widest">Active_Protocols</h3>
+                {['AES-256 Encryption', 'Biometric Sync', 'Node redundancy'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 text-white/40 text-[9px] font-bold uppercase">
+                        <div className="w-1 h-1 bg-[#00f2ea] rounded-full" /> {item}
+                    </div>
+                ))}
             </div>
-          </div>
         </div>
-      </motion.div>
 
-      {/* Floating Elements (Unique Decorations) */}
-      <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/10 blur-[80px] rounded-full animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-32 h-32 bg-cyan-500/10 blur-[80px] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* MIDDLE: THE FORM BOX (6 Columns) */}
+        <div className="lg:col-span-6">
+          <motion.div className="relative p-[1px] rounded-[3rem] bg-gradient-to-br from-[#00f2ea]/30 via-white/5 to-transparent">
+            <div className="bg-[#0a0b14] rounded-[3rem] p-8 md:p-12 relative overflow-hidden min-h-[550px] flex flex-col justify-center border border-white/5">
+              
+              <AnimatePresence mode="wait">
+                {status === 'success' ? (
+                  /* SUCCESS STATE */
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center space-y-8"
+                  >
+                    <div className="flex justify-center">
+                        <div className="w-24 h-24 bg-[#00f2ea]/10 border border-[#00f2ea]/40 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(0,242,234,0.2)]">
+                            <CheckCircle2 size={48} className="text-[#00f2ea]" />
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <h2 className="text-4xl font-black text-white uppercase italic">Access Granted</h2>
+                        <p className="text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase">Welcome to the network, Agent {formData.name}</p>
+                    </div>
+
+                    <motion.button 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={resetForm}
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 rounded-2xl text-white text-[10px] font-black uppercase tracking-widest hover:bg-[#00f2ea] hover:text-black transition-all"
+                    >
+                        <RefreshCcw size={14} /> Back to Terminal
+                    </motion.button>
+                  </motion.div>
+                ) : (
+                  /* FORM STATE */
+                  <motion.form 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    onSubmit={handleSubmit} 
+                    className="space-y-6"
+                  >
+                    <div className="grid md:grid-cols-1 gap-6">
+                      <div className="space-y-2 group">
+                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Full_Name</label>
+                        <div className="relative">
+                          <User className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
+                          <input required name="name" value={formData.name} onChange={handleChange} type="text" placeholder="GHOST_OPERATOR" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Secure_Email</label>
+                        <div className="relative">
+                          <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
+                          <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="AGENT@GRID.SECURE" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2 group">
+                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Comms_Line</label>
+                        <div className="relative">
+                          <Phone className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
+                          <input required name="phone" value={formData.phone} onChange={handleChange} type="tel" placeholder="+91 XXXX-XXXX" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-6">
+                      <motion.button 
+                        disabled={status === 'loading'}
+                        className="w-full relative py-6 bg-[#00f2ea] text-black font-[1000] uppercase tracking-[0.4em] text-xs overflow-hidden rounded-[2rem] shadow-[0_0_30px_rgba(0,242,234,0.3)] disabled:opacity-50"
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                          {status === 'loading' ? <><Loader2 className="animate-spin" /> Syncing...</> : <><Lock size={16} /> Deploy_Identity</>}
+                        </span>
+                      </motion.button>
+                    </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT: LIVE STATUS (3 Columns) */}
+        <div className="lg:col-span-3 space-y-6">
+            <div className="p-6 rounded-[2rem] bg-white/5 border border-white/10 space-y-4">
+                <div className="flex items-center gap-2">
+                    <Activity size={14} className="text-[#00f2ea]" />
+                    <span className="text-[10px] font-black text-white uppercase tracking-widest">Live_Activity</span>
+                </div>
+                <div className="space-y-4">
+                    {[1, 2, 3].map((_, i) => (
+                        <div key={i} className="flex gap-3 items-start opacity-40 hover:opacity-100 transition-opacity">
+                            <div className="w-1 h-8 bg-gray-700 rounded-full" />
+                            <div>
+                                <p className="text-[9px] text-white font-bold uppercase">New Agent Joined</p>
+                                <p className="text-[8px] text-gray-500 font-mono">ID: 0x992{i}... Lucknow_Node</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="p-6 rounded-[2rem] bg-[#00f2ea]/5 border border-[#00f2ea]/20">
+                <Cpu size={20} className="text-[#00f2ea] mb-3" />
+                <h4 className="text-white font-black text-xs uppercase italic tracking-tighter">System Ready</h4>
+                <p className="text-gray-500 text-[9px] uppercase mt-1 leading-relaxed">All encrypted channels are open for enrollment. Server load: 12%.</p>
+            </div>
+        </div>
+
+      </div>
     </div>
   );
 };

@@ -85,7 +85,7 @@ const Navbar = () => {
                         </Link>
                       ) : (
                         <Link to="/contact" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-400 hover:text-white hover:bg-yellow-500/10 rounded-xl transition-all uppercase tracking-wider group">
-                          <Mail size={16} className="group-hover:text-yellow-400" /> Security Hub
+                          <Mail size={16} className="group-hover:text-yellow-400" /> contact
                         </Link>
                       )}
                     </div>

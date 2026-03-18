@@ -11,12 +11,12 @@ const HomePage = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const partners = [
-    { name: "Partner 1", logo: "/p1.png" },
-    { name: "Partner 2", logo: "/p2.png" },
-    { name: "Partner 3", logo: "/p3.png" },
-    { name: "Partner 4", logo: "/p4.png" },
-    { name: "Partner 5", logo: "/p5.png" },
-    { name: "Partner 6", logo: "/p6.png" },
+    { name: "Partner 1", logo: "/dp.png" },
+    { name: "Partner 2", logo: "/cy.png" },
+   // { name: "Partner 3", logo: "/logo.png" },
+    { name: "Partner 4", logo: "/mc.png" },
+    { name: "Partner 5", logo: "/rk.png" },
+    { name: "Partner 6", logo: "/v2.png" },
   ];
 
   const features = [
@@ -86,7 +86,7 @@ const HomePage = () => {
               <div className="mt-4 flex flex-col sm:flex-row items-center gap-4 lg:justify-start justify-center">
                 <span className="h-[1px] w-12 bg-cyan-500/50 hidden sm:block"></span>
                 <p className="text-cyan-400 font-mono text-xs md:text-sm uppercase tracking-[0.5em] font-light">
-                  Securing the Neural Grid <span className="text-white/20">|</span> Est. 2024
+                  Securing the Neural Grid <span className="text-white/20">|</span> Est. 2026
                 </p>
               </div>
             </div>
@@ -97,23 +97,36 @@ const HomePage = () => {
 
             <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
               <Link to="/register">
-                <button className="group relative px-8 py-4 bg-white text-black font-black uppercase text-xs tracking-[0.2em] overflow-hidden transition-all hover:bg-cyan-400">
-                  <span className="relative z-10">Initialize Access</span>
-                  <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 bg-cyan-400 transition-transform duration-300"></div>
-                </button>
+               <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff006e] px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:scale-105 transition-all">Registration</button>
               </Link>
               
-              <div className="flex -space-x-3">
-                {[1,2,3,4].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-[#00020a] bg-slate-800 flex items-center justify-center text-[10px] font-bold text-white">
-                    U{i}
-                  </div>
-                ))}
-                <div className="pl-6 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-                  +2.4k Members Active
-                </div>
-              </div>
-            </div>
+             <div className="flex items-center -space-x-3">
+  {/* Colorful User Avatars */}
+  {[1, 2, 3, 4].map((i) => (
+    <div 
+      key={i} 
+      className="w-10 h-10 rounded-full border-2 border-[#02040a] bg-gradient-to-br from-[#0d1117] via-orange-500/20 to-orange-500/10 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.1)] relative"
+    >
+      {/* Dynamic Border Gradient */}
+      <div className={`absolute inset-0 rounded-full border border-gradient-to-br ${
+        i % 2 === 0 ? "from-orange-400 to-orange-700" : "from-blue-400 to-blue-700"
+      } opacity-50`}></div>
+      
+      {/* Colorful User Text */}
+      <span className={`text-[11px] font-black tracking-tighter ${
+        i % 2 === 0 ? "text-orange-300" : "text-blue-300"
+      }`}>
+        U{i}
+      </span>
+    </div>
+  ))}
+  
+  {/* Light Colored Text */}
+  <div className="pl-6 text-[10px] text-slate-100 font-black uppercase tracking-[0.2em] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+    +2.4k <span className="text-orange-500 animate-pulse">Members</span> Active
+  </div>
+</div>
+</div>
           </motion.div>
 
           <motion.div 
