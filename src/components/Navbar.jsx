@@ -15,8 +15,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', icon: <Home size={18} /> },
-    { name: 'Services', path: '/services', hasDrop: true, icon: <Briefcase size={18} /> },
-    { name: 'Events', path: '/events', icon: <Calendar size={18} /> },
+    { name: 'Services', path: '/services',  icon: <Briefcase size={18} /> },
+    //{ name: 'Events', path: '/events', icon: <Calendar size={18} /> },
     { name: 'Members', path: '/members', icon: <Users size={18} /> },
     { name: 'About', path: '/about', hasDrop: true, icon: <Activity size={18} /> }
   ];
@@ -54,7 +54,7 @@ const Navbar = () => {
       <div className="flex flex-col">
         <h1 className="text-[18px] md:text-[24px] font-black tracking-tighter uppercase italic">
           <span className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">Crimex</span>
-          <span className="ml-1 text-yellow-400 drop-shadow-[0_0_12px_rgba(234,179,8,0.4)]">Intelligence</span>
+          <span className="ml-1 text-blue-400 drop-shadow-[0_0_12px_rgba(234,179,8,0.4)]">Intelligence</span>
         </h1>
         <div className="h-[1px] w-0 group-hover:w-full bg-yellow-400 transition-all duration-500 shadow-[0_0_10px_#eab308]" />
       </div>
