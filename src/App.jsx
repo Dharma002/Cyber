@@ -5,16 +5,17 @@ import { AnimatePresence } from 'framer-motion';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage'; 
+import DepartmentPage from './pages/DepartmentPage'; 
 import CoursesPage from './pages/CoursesPage';   
 import EventsPage from './pages/EventsPage';
 import MembersPage from './pages/MembersPage';
 import InternshipPage from './pages/InternshipPage';
 import RegistrationPage from './pages/RegistrationPage';
-import LoginPage from './pages/LoginPage';   
+import LoginPage from './pages/LoginPage';
 import ContactPage from './pages/ContactPage';
 
 // Components & Layout import
-import Layout from './components/Layout'; 
+import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop'; // Scroll reset component
 
 const AnimatedRoutes = () => {
@@ -27,11 +28,12 @@ const AnimatedRoutes = () => {
         {/* Main Pages */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        
-        {/* Services & Courses Section */}
+
+        {/* Core Sections */}
+        <Route path="/departments" element={<DepartmentPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/courses" element={<CoursesPage />} />
-        
+
         {/* Events & Community */}
         <Route path="/events" element={<EventsPage />} />
         <Route path="/members" element={<MembersPage />} />
