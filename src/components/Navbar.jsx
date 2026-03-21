@@ -23,8 +23,35 @@ const Navbar = () => {
   ];
 
   return (
-   <header className="fixed top-0 w-full z-[100] bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.8)]">
-  <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-[75px] md:h-[90px] flex justify-between items-center relative">
+    <header className="fixed top-0 w-full z-[100]">
+      {/* 1. MISSION INTELLIGENCE TICKER (Top Bar) */}
+      <div className="w-full bg-cyan-500 h-[28px] flex items-center overflow-hidden relative border-b border-black/20">
+         <motion.div 
+           animate={{ x: [0, -1000] }}
+           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+           className="flex items-center gap-16 whitespace-nowrap px-10"
+         >
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="flex items-center gap-12 text-[9px] font-black text-black uppercase tracking-[0.2em] italic">
+                 <span className="flex items-center gap-2"><Activity size={12} /> STATUS: <span className="text-white bg-black px-1.5 rounded">OPERATIONAL</span></span>
+                 <span className="opacity-40">//</span>
+                 <span>ACTIVE_NODES: 1,429</span>
+                 <span className="opacity-40">//</span>
+                 <span>THREAT_LEVEL: <span className="text-blue-900">MINIMAL</span></span>
+                 <span className="opacity-40">//</span>
+                 <span>SECURE_LATENCY: 24MS</span>
+                 <span className="opacity-40 cursor-default">|</span>
+              </div>
+            ))}
+         </motion.div>
+         {/* Gradient Overlays for smooth edges */}
+         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-cyan-500 to-transparent pointer-events-none z-10"></div>
+         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-cyan-500 to-transparent pointer-events-none z-10"></div>
+      </div>
+
+      {/* 2. MAIN NAVIGATION (Redesigned with Ticker Support) */}
+      <div className="bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.8)] px-4 md:px-8">
+        <div className="max-w-[1600px] mx-auto h-[75px] md:h-[80px] flex justify-between items-center relative">
         
         
         {/* LEFT: LOGO SECTION (Redesigned) */}
@@ -171,6 +198,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </div>
+     </div>
     </header>
   );
 };

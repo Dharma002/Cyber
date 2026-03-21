@@ -64,13 +64,14 @@ const Footer = () => {
 
           {/* SOCIAL LINKS */}
           <div className="flex gap-4">
-           {/* <button 
-              onClick={openWhatsApp} 
+            <a 
+              href="https://chat.whatsapp.com/Cdr2DnpXfZAKFSr9bGunkw" 
+              target="_blank" rel="noopener noreferrer" 
               className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/5 hover:-translate-y-1 transition-all duration-300"
-              title="WhatsApp Support"
+              title="WhatsApp Community"
             >
               <MessageCircle size={20}/>
-            </button> */}
+            </a>
 
             <a 
               href="https://linkedin.com/company/crimex-intelligence" 

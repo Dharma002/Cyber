@@ -1,272 +1,334 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Target, Users, Zap, Award, UserCheck, Briefcase, Globe, Activity } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { 
+  Shield, Target, Users, Zap, Award, UserCheck, 
+  Briefcase, Globe, Activity, Terminal, Eye, Cpu, Search, Database, Fingerprint, MessageCircle
+} from 'lucide-react';
 
-const Card = ({ icon: Icon, title, description, color }) => (
+const Card = ({ icon: Icon, title, description, color, index }) => (
   <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    whileHover={{ y: -10, scale: 1.02 }}
-    className={`relative group bg-[#0a0c12]/80 backdrop-blur-3xl border border-white/5 p-8 rounded-[2rem] transition-all duration-500 hover:border-${color}-500/30 overflow-hidden h-full shadow-2xl`}
+    className="group relative bg-[#0a0c12]/40 backdrop-blur-3xl border border-white/5 p-10 rounded-[2.5rem] hover:bg-cyan-500/[0.02] hover:border-cyan-500/30 transition-all duration-500 flex flex-col h-full overflow-hidden shadow-2xl"
   >
-    <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-${color}-500/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity`} />
+    <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
     
-    <div className={`w-14 h-14 bg-${color}-500/10 rounded-2xl flex items-center justify-center mb-6 border border-${color}-500/20 text-${color}-400 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(34,211,238,0.1)]`}>
-      <Icon size={28} />
+    <div className="relative z-10">
+      <div className={`w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-8 border border-white/10 text-cyan-400 group-hover:scale-110 group-hover:rotate-[360deg] transition-all duration-700 shadow-[0_0_30px_rgba(6,182,212,0.1)]`}>
+        <Icon size={32} />
+      </div>
+      
+      <h3 className="text-2xl font-black uppercase mb-4 italic text-white tracking-tighter leading-none group-hover:text-cyan-400 transition-colors">{title}</h3>
+      <p className="text-slate-400 text-[13px] leading-relaxed font-medium group-hover:text-slate-200 transition-colors uppercase tracking-wide opacity-80">{description}</p>
     </div>
     
-    <h3 className="text-2xl font-black uppercase mb-4 italic text-white tracking-tight">{title}</h3>
-    <p className="text-slate-400 text-sm leading-relaxed font-medium">{description}</p>
+    {/* Decorative corner bit */}
+    <div className="absolute bottom-0 right-0 p-4 opacity-5 group-hover:opacity-20 transition-opacity">
+       <Terminal size={40} />
+    </div>
   </motion.div>
 );
 
+const MethodologyStep = ({ title, desc, icon: Icon, index }) => (
+  <div className="flex gap-8 group">
+    <div className="flex flex-col items-center">
+      <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all shadow-xl">
+        <Icon size={20} />
+      </div>
+      {index !== 3 && <div className="w-[2px] h-20 bg-gradient-to-b from-cyan-500/50 to-transparent mt-4"></div>}
+    </div>
+    <div className="pt-1">
+      <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-2 group-hover:text-cyan-400 transition-colors">{title}</h4>
+      <p className="text-slate-400 text-[12px] leading-relaxed max-w-sm font-medium">{desc}</p>
+    </div>
+  </div>
+);
+
 const AboutPage = () => {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+
   return (
     <div className="relative min-h-screen bg-[#00020a] text-white overflow-hidden font-sans pt-32 pb-24">
       
       {/* --- BACKGROUND LAYER --- */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {/* Animated Grid */}
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ backgroundImage: `linear-gradient(#06b6d4 1px, transparent 1px), linear-gradient(90deg, #06b6d4 1px, transparent 1px)`, backgroundSize: '60px 60px' }}>
+        <div className="absolute inset-0 opacity-[0.02]" 
+             style={{ backgroundImage: `linear-gradient(#06b6d4 1px, transparent 1px), linear-gradient(90deg, #06b6d4 1px, transparent 1px)`, backgroundSize: '80px 80px' }}>
         </div>
-        
-        {/* Glow Spheres */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-500/10 blur-[150px] rounded-full"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[150px] rounded-full"></div>
-        
-        {/* Scanning Line */}
-        <motion.div 
-          initial={{ top: "-10%" }} 
-          animate={{ top: "110%" }} 
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }} 
-          className="absolute left-0 right-0 h-[30vh] bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent z-10" 
-        />
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-cyan-500/5 blur-[180px] rounded-full"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-600/5 blur-[180px] rounded-full"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10 space-y-32">
+      <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10 space-y-16">
         
-        {/* --- 1. HERO SECTION --- */}
-        <section className="flex flex-col items-center text-center gap-10">
+        {/* --- CINEMATIC HERO: THE ARCHIVE --- */}
+        <section className="relative min-h-[45rem] flex flex-col items-center justify-center text-center overflow-visible pt-6">
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 bg-white/[0.03] border border-white/10 px-6 py-2 rounded-full backdrop-blur-md mb-4"
+            style={{ opacity, scale }}
+            className="relative z-10 w-full max-w-5xl"
           >
-            <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_10px_#06b6d4]"></div>
-            <span className="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em]">Official Intelligence Archive // 2026</span>
+            {/* HUD Status Header */}
+            <div className="flex items-center justify-center gap-8 mb-12 opacity-50">
+               <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></div>
+                  <span className="text-cyan-500 font-mono text-[8px] uppercase tracking-[0.6em]">System_Online</span>
+               </div>
+               <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+               <div className="flex items-center gap-2">
+                  <span className="text-white font-mono text-[8px] uppercase tracking-[0.6em]">Node_Active: CR-01</span>
+               </div>
+            </div>
+
+            {/* Main Cinematic Title */}
+            <div className="relative mb-16">
+               <motion.div 
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 className="relative z-10"
+               >
+                 <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-[1000] uppercase italic tracking-tighter leading-[0.7] text-white">
+                   THE
+                   <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-800 drop-shadow-[0_0_50px_rgba(6,182,212,0.4)]"> ARCHIVE</span>
+                 </h1>
+               </motion.div>
+               
+               {/* Background Glows for Title */}
+               <div className="absolute inset-0 z-0 flex items-center justify-center origin-center">
+                  <div className="w-full h-1/2 bg-cyan-500/10 blur-[150px] rounded-full"></div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-[2px]"></div>
+               </div>
+            </div>
+
+            {/* Subtext with HUD Indicators */}
+            <div className="relative max-w-2xl mx-auto space-y-10">
+               <p className="text-slate-400 text-xl md:text-2xl font-medium tracking-tight leading-relaxed italic">
+                 "Our mission is to translate <span className="text-white">complex cyber entropy</span> into actionable tactical dossiers for the next generation of digital defenders."
+               </p>
+               
+               {/* Centered CTA/Metric */}
+               <div className="flex items-center justify-center gap-8 pt-8">
+                  <div className="h-[1px] flex-grow bg-gradient-to-r from-transparent to-white/10"></div>
+                  <div className="flex items-center gap-4 bg-white/[0.03] border border-white/10 px-6 py-4 rounded-2xl backdrop-blur-xl group cursor-default">
+                     <Cpu className="text-cyan-500 animate-pulse" size={24} />
+                     <div className="text-left">
+                        <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Grid_Capability</p>
+                        <p className="text-lg font-black text-white italic tracking-tighter leading-none">99.9% SECURE</p>
+                     </div>
+                  </div>
+                  <div className="h-[1px] flex-grow bg-gradient-to-l from-transparent to-white/10"></div>
+               </div>
+            </div>
           </motion.div>
-          
-          <div className="space-y-6 max-w-4xl">
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.8] italic">
-              <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">CRIMEX</span><br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]">INTELLIGENCE</span>
-            </h1>
-            <p className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto font-medium">
-              Empowering the next generation of <span className="text-white">cyber warriors</span> through elite research, tactical training, and strategic intelligence partnerships.
-            </p>
+
+          {/* Floating Data Nodes (Decorative) */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+             {[...Array(6)].map((_, i) => (
+                <motion.div 
+                  key={i}
+                  animate={{ 
+                    y: [0, -40, 0],
+                    x: [0, 20, 0],
+                    opacity: [0.2, 0.5, 0.2]
+                  }}
+                  transition={{ 
+                    duration: 5 + i, 
+                    repeat: Infinity, 
+                    delay: i * 0.5 
+                  }}
+                  className="absolute p-4 border border-cyan-500/20 rounded-xl bg-cyan-500/[0.02]"
+                  style={{ 
+                    top: `${Math.random() * 80 + 10}%`, 
+                    left: `${Math.random() * 90}%`,
+                    transform: `scale(${0.5 + Math.random() * 0.5})`
+                  }}
+                >
+                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mb-2"></div>
+                   <div className="w-8 h-[1px] bg-cyan-500/30"></div>
+                </motion.div>
+             ))}
           </div>
-          
-          <div className="w-40 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
         </section>
 
-        {/* --- 2. THE FOUNDATION (Redesigned) --- */}
-        <section className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-[4rem] blur opacity-10 group-hover:opacity-20 transition duration-1000 group-hover:duration-200"></div>
-          
-          <div className="relative grid lg:grid-cols-12 gap-12 lg:gap-0 bg-[#05070a]/80 backdrop-blur-2xl rounded-[4rem] border border-white/10 overflow-hidden shadow-2xl">
-            {/* Left Content Column */}
-            <div className="lg:col-span-7 p-10 lg:p-20 space-y-10 relative">
-              <div className="absolute top-0 left-0 w-32 h-32 bg-cyan-500/5 blur-3xl opacity-50"></div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="space-y-6"
-              >
-                <div className="flex items-center gap-4">
-                   <div className="w-10 h-[2px] bg-gradient-to-r from-cyan-500 to-transparent"></div>
-                   <span className="text-cyan-500 font-bold text-xs uppercase tracking-[0.5em] font-mono">Archive_Ref: 01_FOUNDATION</span>
-                </div>
-                
-                <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter text-white leading-[0.9]">
-                  LEADING THE <br /> 
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">CYBER REVOLUTION</span>
-                </h2>
-                
-                <p className="text-slate-400 text-lg leading-relaxed font-medium max-w-xl">
-                  CRIMEX Intelligence is more than just a hub; it's a mission to secure the future. We bridge the gap between academic research and <span className="text-cyan-400">real-world tactical defense</span>. Our foundation is built on the pillars of innovation, integrity, and absolute security.
-                </p>
-              </motion.div>
+        {/* --- INVESTIGATION LIFECYCLE --- */}
+        <section className="relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-20 items-center bg-[#0a0c12]/40 backdrop-blur-3xl p-12 lg:p-16 rounded-[5rem] border border-white/10 relative shadow-2xl">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px]"></div>
+             
+             <div>
+               <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><Cpu size={20} /></div>
+                  <h2 className="text-4xl font-black uppercase italic tracking-tighter text-white">SYSTEM<br />METHODOLOGY</h2>
+               </div>
+               <p className="text-slate-400 text-lg font-medium leading-relaxed mb-12 max-w-sm">
+                 How we translate raw data into <span className="text-white">actionable tactical intelligence</span> within our secure ecosystem.
+               </p>
+               
+               <div className="space-y-2">
+                 {[
+                   { t: "IDENTIFICATION", v: "CRITICAL" },
+                   { t: "ACQUISITION", v: "ENCRYPTED" },
+                   { t: "SYNTHESIS", v: "COGNITIVE" }
+                 ].map(item => (
+                   <div key={item.t} className="flex justify-between items-center bg-white/[0.02] p-4 rounded-xl border border-white/5">
+                      <span className="text-[10px] font-mono text-cyan-600 font-bold uppercase">{item.t}</span>
+                      <span className="text-[10px] font-mono text-slate-300 font-bold uppercase tracking-widest">{item.v}</span>
+                   </div>
+                 ))}
+               </div>
+             </div>
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                {[
-                  { label: "Trained Personnel", value: "500+", icon: Users, color: "cyan" },
-                  { label: "Strategic MOUs", value: "15+", icon: Briefcase, color: "blue" }
-                ].map((stat, i) => (
-                  <motion.div 
-                    key={i}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 relative group/stat cursor-default group"
-                  >
-                    <div className={`absolute top-4 right-4 text-${stat.color}-500/20 group-hover/stat:text-${stat.color}-500/40 transition-colors`}>
-                      <stat.icon size={40} />
-                    </div>
-                    <p className={`text-4xl font-black text-${stat.color}-400 mb-1 italic tracking-tighter group-hover:text-white transition-colors`}>{stat.value}</p>
-                    <p className="text-slate-500 text-[10px] uppercase tracking-widest font-black font-mono">{stat.label}</p>
-                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-${stat.color}-500 transition-all group-hover/stat:w-1/2`}></div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Visual Column */}
-            <div className="lg:col-span-5 relative min-h-[400px] bg-gradient-to-br from-[#0a0c12] to-black lg:border-l border-white/10 overflow-hidden group/img">
-              <div className="absolute inset-0 z-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070" 
-                  alt="Cyber Defense Command" 
-                  className="w-full h-full object-cover opacity-40 group-hover/img:scale-110 transition-transform duration-1000 grayscale hover:grayscale-0"
+             <div className="space-y-12 relative">
+                <div className="absolute -left-10 top-0 bottom-0 w-[1px] bg-gradient-to-b from-cyan-500/50 via-blue-500/50 to-transparent hidden lg:block"></div>
+                <MethodologyStep 
+                  index={0}
+                  title="Evidence Preservation"
+                  desc="Utilizing advanced write-blockers and hashed imaging to maintain chain of custody from T-Zero."
+                  icon={Shield}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#05070a] via-transparent to-transparent"></div>
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#05070a] to-transparent"></div>
-              </div>
-
-              {/* Data Overlays */}
-              <div className="absolute inset-0 p-10 flex flex-col justify-between z-10 pointer-events-none">
-                <div className="flex justify-between items-start">
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[8px] font-mono text-cyan-500/60 uppercase">System_State: ACTIVE</span>
-                    <span className="text-[8px] font-mono text-cyan-500/60 uppercase">Encryption: AES_256</span>
-                  </div>
-                  <Activity className="text-cyan-500/50 animate-pulse" size={24} />
-                </div>
-
-                <div className="space-y-4">
-                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl max-w-[200px]">
-                    <p className="text-[10px] text-cyan-400 font-mono mb-1 flex items-center gap-2">
-                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
-                       LIVE_FEED_SECURE
-                    </p>
-                    <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                       <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: "70%" }}
-                        transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-                        className="h-full bg-cyan-500"
-                       />
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
-                      <Shield className="text-cyan-400" size={18} />
-                    </div>
-                    <div>
-                      <p className="text-white font-black uppercase text-xs tracking-widest italic leading-none">Operation Core</p>
-                      <p className="text-cyan-600 font-mono text-[8px] uppercase">Crimex_Node_Active</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Scanning Effect Overlay */}
-              <div className="absolute inset-x-0 h-[2px] bg-cyan-500/30 blur-[2px] animate-scan z-20"></div>
-            </div>
+                <MethodologyStep 
+                  index={1}
+                  title="Pattern Synthesis"
+                  desc="AI-driven node analysis to detect anomalies across encrypted data streams and behavioral signatures."
+                  icon={Fingerprint}
+                />
+                <MethodologyStep 
+                  index={2}
+                  title="Tactical Reporting"
+                  desc="Generating court-ready digital dossiers with timestamped forensic certainty and absolute integrity."
+                  icon={Database}
+                />
+             </div>
           </div>
         </section>
 
-        {/* --- 3. VISION & MISSION --- */}
-        <section className="grid md:grid-cols-2 gap-10">
-          <Card 
-            icon={Target}
-            title="Our Vision"
-            color="cyan"
-            description="To become the global gold standard in tactical cyber intelligence and digital forensic research, creating a world where data is impenetrable and defense is absolute."
-          />
-          <Card 
-            icon={Shield}
-            title="Our Mission"
-            color="blue"
-            description="To empower investigators, students, and organizations through advanced training modules, tactical research, and high-tier career roadmaps in cybersecurity."
-          />
+        {/* --- MISSION & VISION (Redesigned) --- */}
+        <section className="grid lg:grid-cols-2 gap-10">
+          <div className="group relative bg-gradient-to-br from-cyan-500/10 to-transparent p-12 rounded-[3.5rem] border border-cyan-500/20 overflow-hidden shadow-2xl">
+             <Target className="text-cyan-400 mb-8 group-hover:scale-110 transition-transform" size={48} />
+             <h3 className="text-4xl font-black uppercase italic tracking-tighter text-white mb-4">OUR VISION</h3>
+             <p className="text-slate-400 text-lg leading-relaxed font-medium">To architect a global standard in clinical digital defense and cognitive forensic research, creating a future where digital sovereignty is absolute.</p>
+             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-cyan-500 to-transparent"></div>
+          </div>
+          <div className="group relative bg-gradient-to-br from-blue-600/10 to-transparent p-12 rounded-[3.5rem] border border-blue-600/20 overflow-hidden shadow-2xl">
+             <Eye className="text-blue-400 mb-8 group-hover:scale-110 transition-transform" size={48} />
+             <h3 className="text-4xl font-black uppercase italic tracking-tighter text-white mb-4">OUR MISSION</h3>
+             <p className="text-slate-400 text-lg leading-relaxed font-medium">To deliver elite investigation modules, tactical personnel training, and military-grade intelligence Roadmaps for the modern investigator.</p>
+             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-blue-600 to-transparent"></div>
+          </div>
         </section>
 
-        {/* --- 4. CORE VALUES --- */}
+        {/* --- CORE VALUES --- */}
         <section className="space-y-16">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 italic">
-              <span className="text-white">CORE</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">VALUES</span>
+          <div className="flex flex-col items-center text-center">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 italic leading-none">
+              <span className="text-white underline decoration-cyan-500 underline-offset-[12px] decoration-4">CORE</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">VALUES</span>
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent mx-auto"></div>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             <Card 
+              index={0}
               icon={Zap}
               title="Innovation"
-              color="cyan"
-              description="Constantly pushing the boundaries of what's possible in digital defense and cognitive intelligence research."
+              description="Pushing boundaries in cognitive intelligence research and offensive-defensive fusion."
             />
             <Card 
+              index={1}
               icon={Users}
               title="Integrity"
-              color="indigo"
-              description="Upholding the highest ethical standards in every investigation and strategic collaboration we undertake."
+              description="Upholding surgical precision and absolute transparency in every dossier we finalize."
             />
             <Card 
+              index={2}
               icon={Award}
               title="Excellence"
-              color="blue"
-              description="Delivering world-class expertise and precision in everything from training to forensic data analysis."
+              description="Setting the high-water mark for forensic capability and professional agent training."
             />
           </div>
         </section>
 
-        {/* --- 5. FOUNDER SECTION (Refined) --- */}
-        <section className="bg-gradient-to-br from-[#0a0c12]/80 to-[#05070a]/80 p-12 lg:p-20 rounded-[4rem] border border-white/5 backdrop-blur-3xl relative overflow-hidden shadow-3xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 blur-[120px] rounded-full"></div>
-          <div className="flex flex-col md:flex-row items-center gap-16 relative z-10">
-            <div className="relative w-72 h-72 shrink-0">
-               <div className="absolute inset-0 bg-cyan-500/20 blur-[80px] rounded-full animate-pulse"></div>
-               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/5 p-2 bg-[#05080a] shadow-inner group cursor-pointer">
-                 <img src="/ayushi.jpeg" alt="Ayushi Singh" className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-1000" />
-                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent animate-scan opacity-0 group-hover:opacity-100" />
-               </div>
-               <div className="absolute bottom-4 right-4 h-14 w-14 bg-cyan-500 rounded-full border-4 border-[#0a0c12] flex items-center justify-center shadow-2xl transform group-hover:rotate-[360deg] transition-transform duration-1000">
-                 <Shield className="w-7 h-7 text-black" />
-               </div>
-            </div>
+        {/* --- FOUNDER section (Redesigned as Executive Profile) --- */}
+        <section className="relative pt-20">
+           <div className="absolute top-0 right-0 left-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+           
+           <div className="grid lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-5 relative group">
+                 <div className="absolute -inset-10 bg-cyan-500/10 blur-[80px] rounded-full group-hover:bg-cyan-500/20 transition-all duration-1000"></div>
+                 <div className="relative aspect-[4/5] rounded-[3.5rem] overflow-hidden border-2 border-white/5 bg-[#05080a] shadow-inner group-hover:border-cyan-500/30 transition-all duration-500">
+                    <img 
+                      src="/ayushi.jpeg" 
+                      alt="Ayushi Singh" 
+                      className="w-full h-full object-cover brightness-110 contrast-125 group-hover:scale-105 transition-all duration-1000" 
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00020a] to-transparent"></div>
+                    <div className="absolute bottom-8 left-8">
+                       <p className="text-cyan-500 font-mono text-[8px] uppercase tracking-[0.4em] mb-2">Subject_ID: Founder_Core</p>
+                       <div className="flex gap-2">
+                          <div className="w-10 h-1 bg-cyan-500 rounded-full"></div>
+                          <div className="w-4 h-1 bg-cyan-500/30 rounded-full"></div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
 
-            <div className="space-y-8 text-center md:text-left">
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_10px_#06b6d4]"></div>
-                <span className="text-cyan-500 font-black text-[10px] uppercase tracking-[0.4em]">Chief_Investigator // Founder</span>
+              <div className="lg:col-span-7 space-y-10">
+                 <div className="space-y-4">
+                    <div className="flex items-center flex-wrap gap-3">
+                       <span className="text-[10px] font-black text-cyan-500 uppercase tracking-widest bg-cyan-500/5 border border-cyan-500/10 px-3 py-1 rounded-full">Elite Investigator</span>
+                       <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest bg-white/5 border border-white/10 px-3 py-1 rounded-full">NCRB Expert</span>
+                       <a 
+                        href="https://chat.whatsapp.com/Cdr2DnpXfZAKFSr9bGunkw" 
+                        target="_blank" rel="noopener noreferrer"
+                        className="text-[10px] font-black text-[#25d366] uppercase tracking-widest bg-[#25d366]/5 border border-[#25d366]/20 px-3 py-1 rounded-full flex items-center gap-2 hover:bg-[#25d366] hover:text-black transition-all"
+                       >
+                         <MessageCircle size={12} /> Join Community
+                       </a>
+                    </div>
+                    <h2 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter leading-none text-white leading-tight">
+                       AYUSHI <br />
+                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-600">SINGH</span>
+                    </h2>
+                 </div>
+
+                 <div className="relative p-8 bg-white/[0.02] border-l-4 border-cyan-500 rounded-r-3xl italic">
+                    <p className="text-slate-300 text-2xl font-medium leading-relaxed">
+                       "CRIMEX is not just a hub; it's a testament to digital resilience. Our goal is to forge a legacy where defense isn't just a strategy, but pure cognitive instinct."
+                    </p>
+                    <Terminal className="absolute top-4 right-4 text-white/5" size={40} />
+                 </div>
+
+                 <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="p-6 bg-[#0a0c12] border border-white/5 rounded-3xl group cursor-default">
+                       <h4 className="text-white font-black uppercase text-xs tracking-widest mb-2 flex items-center gap-2">
+                          <Search size={14} className="text-cyan-500" /> Research_Lead
+                       </h4>
+                       <p className="text-slate-500 text-[11px] leading-relaxed uppercase font-mono group-hover:text-slate-300 transition-colors">Specialized in NCRB intelligence patterns and tactical forensic architecture.</p>
+                    </div>
+                    <div className="p-6 bg-[#0a0c12] border border-white/5 rounded-3xl group cursor-default">
+                       <h4 className="text-white font-black uppercase text-xs tracking-widest mb-2 flex items-center gap-2">
+                          <Activity size={14} className="text-cyan-500" /> Operations_Director
+                       </h4>
+                       <p className="text-slate-500 text-[11px] leading-relaxed uppercase font-mono group-hover:text-slate-300 transition-colors">Director of mission-critical investigations and strategic enrollment protocols.</p>
+                    </div>
+                 </div>
               </div>
-              <h2 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter leading-none text-white">
-                AYUSHI SINGH
-              </h2>
-              <p className="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl font-medium">
-                "Our mission is to build an impenetrable digital future. Through CRIMEX, we are creating a legacy of absolute security and cognitive defense intelligence."
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
-                <div className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-cyan-400">NCRB Expert</div>
-                <div className="px-6 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-blue-400">Tactical Specialist</div>
-              </div>
-            </div>
-          </div>
+           </div>
         </section>
 
       </div>
 
       <footer className="relative z-30 py-10 mt-32 text-center border-t border-white/5 opacity-40">
-          <p className="font-mono text-[9px] text-cyan-700 tracking-[0.6em] uppercase italic">Personnel_Briefing // CRIMEX_OS</p>
+          <p className="font-mono text-[9px] text-cyan-700 tracking-[0.6em] uppercase italic">Personnel_Briefing // CRIMEX_OS // v.3.9</p>
       </footer>
 
+      {/* Shared Animation CSS */}
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes scan { 0% { top: -100%; } 100% { top: 100%; } }
-        .animate-scan { animation: scan 4s linear infinite; }
+        @keyframes scan-line { 0% { top: -20%; opacity: 0; } 50% { opacity: 0.3; } 100% { top: 120%; opacity: 0; } }
+        .animate-scan-line { animation: scan-line 5s linear infinite; }
       `}} />
     </div>
   );

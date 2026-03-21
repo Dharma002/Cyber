@@ -18,6 +18,7 @@ import ContactPage from './pages/ContactPage';
 // Components & Layout import
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop'; // Scroll reset component
+import Preloader from './components/Preloader'; 
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -55,6 +56,7 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
+      <Preloader /> 
       {/* 1. ScrollToTop ko Router ke andar sabse upar rakha hai */}
       <ScrollToTop /> 
       
