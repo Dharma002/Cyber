@@ -143,8 +143,8 @@ const MembersPage = () => {
           </motion.div>
           
           <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter uppercase leading-none mb-10 text-center whitespace-nowrap">
-            <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Expert</span>{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]">Squad</span>
+            <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">MEET OUR </span>{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]">TEAM</span>
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
         </div>
