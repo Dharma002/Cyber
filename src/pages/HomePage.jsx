@@ -77,7 +77,7 @@ const HomePage = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#00020a] overflow-x-hidden pt-20">
+    <div className="relative min-h-[50vh] md:min-h-screen w-full bg-[#00020a] overflow-x-hidden pt-10 md:pt-20">
       <AnimatedBackground />
       
       {/* Background Decor */}
@@ -86,10 +86,10 @@ const HomePage = () => {
          <div className="absolute bottom-[10%] right-[10%] w-[60%] h-[60%] bg-blue-600/10 blur-[200px] rounded-full"></div>
       </div>
 
-      <div className="max-w-8xl mx-auto px-8 lg:px-20 relative z-10 space-y-40 pb-40">
+      <div className="max-w-8xl mx-auto px-6 md:px-20 relative z-10 space-y-20 md:space-y-40 pb-20 md:pb-40">
         
         {/* --- TACTICAL SPLIT HERO --- */}
-        <section className="relative min-h-[45rem] flex flex-col items-center justify-center pt-6">
+        <section className="relative min-h-[50vh] md:min-h-[45rem] flex flex-col items-center justify-center pt-6">
            <div className="grid lg:grid-cols-2 gap-20 items-center w-full">
               
               {/* LEFT: STRATEGIC INTEL */}
@@ -105,7 +105,7 @@ const HomePage = () => {
                  </div>
 
                  <div className="space-y-4">
-                    <h1 className="text-6xl md:text-7xl lg:text-8xl font-[1000] uppercase italic tracking-tighter leading-[0.8] text-white">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-[1000] uppercase italic tracking-tighter leading-[0.8] text-white">
                        <DecryptText text="CRIMEX" /><br />
                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-800 drop-shadow-[0_0_30px_rgba(6,182,212,0.3)]">
                           <DecryptText text="INTELLIGENCE" />
@@ -156,9 +156,9 @@ const HomePage = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
-                className="relative flex justify-center items-center min-h-[600px] cursor-crosshair"
+                className="relative flex justify-center items-center min-h-[400px] lg:min-h-[600px] cursor-crosshair"
               >
-                 <div className="relative w-full max-w-[500px] h-[600px] bg-white/[0.01] border border-white/5 rounded-[4rem] overflow-hidden backdrop-blur-3xl shadow-3xl group">
+                 <div className="relative w-full max-w-[500px] h-[400px] lg:h-[600px] bg-white/[0.01] border border-white/5 rounded-[4rem] overflow-hidden backdrop-blur-3xl shadow-3xl group">
                     
                     {/* INTERACTIVE PARTICLE SWARM */}
                     <div className="absolute inset-0 pointer-events-none z-0">

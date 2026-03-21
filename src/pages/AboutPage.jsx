@@ -32,15 +32,15 @@ const Card = ({ icon: Icon, title, description, color, index }) => (
 );
 
 const MethodologyStep = ({ title, desc, icon: Icon, index }) => (
-  <div className="flex gap-8 group">
+  <div className="flex gap-3 sm:gap-8 group">
     <div className="flex flex-col items-center">
-      <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all shadow-xl">
+      <div className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500 group-hover:text-black transition-all shadow-xl shrink-0">
         <Icon size={20} />
       </div>
-      {index !== 3 && <div className="w-[2px] h-20 bg-gradient-to-b from-cyan-500/50 to-transparent mt-4"></div>}
+      {index !== 3 && <div className="w-[1px] h-16 sm:h-20 bg-gradient-to-b from-cyan-500/30 to-transparent mt-4"></div>}
     </div>
     <div className="pt-1">
-      <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-2 group-hover:text-cyan-400 transition-colors">{title}</h4>
+      <h4 className="text-lg sm:text-xl font-black text-white uppercase italic tracking-tighter mb-2 group-hover:text-cyan-400 transition-colors">{title}</h4>
       <p className="text-slate-400 text-[12px] leading-relaxed max-w-sm font-medium">{desc}</p>
     </div>
   </div>
@@ -63,10 +63,10 @@ const AboutPage = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-600/5 blur-[180px] rounded-full"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-12 relative z-10 space-y-16">
         
         {/* --- CINEMATIC HERO: THE ARCHIVE --- */}
-        <section className="relative min-h-[45rem] flex flex-col items-center justify-center text-center overflow-visible pt-6">
+        <section className="min-h-[50vh] md:min-h-screen relative flex items-center justify-center pt-10 md:pt-20 overflow-hidden px-6 md:px-20">
           <motion.div 
             style={{ opacity, scale }}
             className="relative z-10 w-full max-w-5xl"
@@ -84,13 +84,13 @@ const AboutPage = () => {
             </div>
 
             {/* Main Cinematic Title */}
-            <div className="relative mb-16">
+            <div className="relative mb-8 md:mb-16">
                <motion.div 
                  initial={{ opacity: 0, y: 30 }}
                  animate={{ opacity: 1, y: 0 }}
                  className="relative z-10"
                >
-                 <h1 className="text-7xl md:text-9xl lg:text-[10rem] font-[1000] uppercase italic tracking-tighter leading-[0.7] text-white">
+                 <h1 className="text-3xl sm:text-7xl lg:text-8xl font-[1000] uppercase italic tracking-tighter leading-tight md:leading-[0.7] text-white text-center">
                    THE
                    <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-800 drop-shadow-[0_0_50px_rgba(6,182,212,0.4)]"> ARCHIVE</span>
                  </h1>
@@ -153,32 +153,32 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* --- INVESTIGATION LIFECYCLE --- */}
-        <section className="relative overflow-hidden">
-          <div className="grid lg:grid-cols-2 gap-20 items-center bg-[#0a0c12]/40 backdrop-blur-3xl p-12 lg:p-16 rounded-[5rem] border border-white/10 relative shadow-2xl">
+        <section className="relative py-12 md:py-0">
+          <div className="grid lg:grid-cols-2 gap-16 items-center bg-[#0a0c12]/40 backdrop-blur-3xl px-4 sm:px-12 py-10 lg:py-16 rounded-[2.5rem] md:rounded-[5rem] border border-white/10 relative shadow-2xl">
              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-[100px]"></div>
              
              <div>
                <div className="flex items-center gap-4 mb-8">
                   <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400"><Cpu size={20} /></div>
-                  <h2 className="text-4xl font-black uppercase italic tracking-tighter text-white">SYSTEM<br />METHODOLOGY</h2>
+                  <h2 className="text-[1.35rem] sm:text-3xl md:text-4xl font-black uppercase italic tracking-tighter text-white leading-tight">SYSTEM<br className="hidden md:block" /> METHODOLOGY</h2>
                </div>
                <p className="text-slate-400 text-lg font-medium leading-relaxed mb-12 max-w-sm">
                  How we translate raw data into <span className="text-white">actionable tactical intelligence</span> within our secure ecosystem.
                </p>
                
-               <div className="space-y-2">
-                 {[
-                   { t: "IDENTIFICATION", v: "CRITICAL" },
-                   { t: "ACQUISITION", v: "ENCRYPTED" },
-                   { t: "SYNTHESIS", v: "COGNITIVE" }
-                 ].map(item => (
-                   <div key={item.t} className="flex justify-between items-center bg-white/[0.02] p-4 rounded-xl border border-white/5">
-                      <span className="text-[10px] font-mono text-cyan-600 font-bold uppercase">{item.t}</span>
-                      <span className="text-[10px] font-mono text-slate-300 font-bold uppercase tracking-widest">{item.v}</span>
-                   </div>
-                 ))}
-               </div>
+                <div className="space-y-2">
+                  {/* Lifecycle Status Indicators */}
+                  {[
+                    { t: "IDENTIFICATION", v: "CRITICAL" },
+                    { t: "ACQUISITION", v: "ENCRYPTED" },
+                    { t: "SYNTHESIS", v: "COGNITIVE" }
+                  ].map(item => (
+                    <div key={item.t} className="flex justify-between items-center bg-white/[0.02] px-3 sm:px-6 py-4 rounded-xl border border-white/5 gap-4">
+                       <span className="text-[9px] sm:text-[10px] font-mono text-cyan-600 font-bold uppercase tracking-wider">{item.t}</span>
+                       <span className="text-[9px] sm:text-[10px] font-mono text-slate-300 font-bold uppercase tracking-widest leading-none">{item.v}</span>
+                    </div>
+                  ))}
+                </div>
              </div>
 
              <div className="space-y-12 relative">
@@ -257,14 +257,13 @@ const AboutPage = () => {
            
            <div className="grid lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5 relative group">
-                 <div className="absolute -inset-10 bg-cyan-500/10 blur-[80px] rounded-full group-hover:bg-cyan-500/20 transition-all duration-1000"></div>
-                 <div className="relative aspect-[4/5] rounded-[3.5rem] overflow-hidden border-2 border-white/5 bg-[#05080a] shadow-inner group-hover:border-cyan-500/30 transition-all duration-500">
+                 <div className="relative aspect-[4/5] rounded-[3.5rem] overflow-hidden border-2 border-white/5 bg-[#05080a] transition-all duration-500">
                     <img 
-                      src="/ayushi.jpeg" 
-                      alt="Ayushi Singh" 
-                      className="w-full h-full object-cover brightness-110 contrast-125 group-hover:scale-105 transition-all duration-1000" 
+                       src="/ayushi.jpeg" 
+                       alt="Ayushi Singh" 
+                       className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000" 
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00020a] to-transparent"></div>
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00020a] to-transparent opacity-60"></div>
                     <div className="absolute bottom-8 left-8">
                        <p className="text-cyan-500 font-mono text-[8px] uppercase tracking-[0.4em] mb-2">Subject_ID: Founder_Core</p>
                        <div className="flex gap-2">
@@ -289,8 +288,8 @@ const AboutPage = () => {
                        </a>
                     </div>
                     <h2 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter leading-none text-white leading-tight">
-                       AYUSHI <br />
-                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-600">SINGH</span>
+                       AYUSHI
+                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-600"> SINGH</span>
                     </h2>
                  </div>
 

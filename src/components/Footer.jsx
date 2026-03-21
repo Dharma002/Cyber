@@ -132,8 +132,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* COMMAND CARD */}
-        <div className="md:col-span-3">
+        {/* COMMAND CARD (Hidden on Mobile) */}
+        <div className="hidden md:block md:col-span-3">
           <div className="p-8 rounded-[2rem] bg-[#0d0d12] border border-white/5 relative overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
             <div className="relative z-10">

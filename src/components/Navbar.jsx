@@ -6,11 +6,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileSubMenu, setMobileSubMenu] = useState(null);
   const location = useLocation();
 
   const closeMenu = () => {
     setIsOpen(false);
     setActiveDropdown(null);
+    setMobileSubMenu(null);
   };
 
   const navLinks = [
@@ -81,13 +83,12 @@ const Navbar = () => {
             <div className="absolute -inset-4 border border-blue-500/5 rounded-full animate-[spin_30s_linear_infinite_reverse] pointer-events-none" />
           </div>
           
-          {/* Branding Text */}
-          <div className="flex flex-col -space-y-1">
+          <div className="hidden md:flex flex-col -space-y-1">
             <div className="flex items-center gap-2">
-              <h1 className="text-[20px] md:text-[24px] font-black tracking-tighter uppercase italic leading-none">
+              <div className="text-[20px] md:text-[24px] font-black tracking-tighter uppercase italic leading-none whitespace-nowrap">
                 <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Crimex</span>
                 <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">Intelligence</span>
-              </h1>
+              </div>
             </div>
             <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
                <div className="h-[1px] w-6 bg-cyan-500/50"></div>
@@ -175,16 +176,54 @@ const Navbar = () => {
                   
                   <div className="flex flex-col gap-2">
                     {navLinks.map((link) => (
-                      <Link 
-                        key={link.name} 
-                        to={link.path} 
-                        onClick={closeMenu}
-                        className={`flex items-center gap-4 p-4 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all
-                          ${location.pathname === link.path ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
-                      >
-                        {link.icon}
-                        {link.name}
-                      </Link>
+                      <div key={link.name} className="flex flex-col">
+                        <div className="flex items-center gap-2">
+                          <Link 
+                            to={link.path} 
+                            onClick={closeMenu}
+                            className={`flex-grow flex items-center gap-4 p-4 rounded-l-2xl text-sm font-bold uppercase tracking-widest transition-all
+                              ${location.pathname === link.path ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+                          >
+                            {link.icon}
+                            {link.name}
+                          </Link>
+                          
+                          {link.hasDrop && (
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setMobileSubMenu(mobileSubMenu === link.name ? null : link.name);
+                              }}
+                              className={`p-4 rounded-r-2xl border-l border-white/5 transition-all
+                                ${mobileSubMenu === link.name ? 'bg-cyan-500/20 text-cyan-400' : 'text-gray-500 bg-white/5'}`}
+                            >
+                               <ChevronDown size={18} className={`transition-transform duration-300 ${mobileSubMenu === link.name ? 'rotate-180' : ''}`} />
+                            </button>
+                          )}
+                        </div>
+                        
+                        {/* MOBILE SUB-MENU (Accordion) */}
+                        <AnimatePresence>
+                          {link.hasDrop && mobileSubMenu === link.name && (
+                            <motion.div 
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden flex flex-col pl-12 gap-1 mt-2 mb-4"
+                            >
+                              {link.name === 'Services' ? (
+                                <Link to="/courses" onClick={closeMenu} className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-cyan-400 transition-all uppercase tracking-wider">
+                                  <BookOpen size={14} /> Academy Portal
+                                </Link>
+                              ) : (
+                                <Link to="/contact" onClick={closeMenu} className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-cyan-400 transition-all uppercase tracking-wider">
+                                  <Mail size={14} /> Contact
+                                </Link>
+                              )}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     ))}
                   </div>
 
