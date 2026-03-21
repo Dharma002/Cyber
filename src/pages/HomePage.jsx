@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Activity, ShieldCheck, Zap, Target, GraduationCap, Trophy, Award, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import CyberGlobe from '../components/CyberGlobe'; 
+import ForensicScanner from '../components/ForensicScanner'; 
 import AnimatedBackground from '../components/AnimatedBackground'; 
 
 const HomePage = () => {
@@ -133,11 +133,10 @@ const HomePage = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="relative w-full lg:w-[40%] flex justify-center items-center h-[500px]"
+            className="relative w-full lg:w-[45%] flex justify-center items-center h-[600px]"
           >
-            <div className="absolute w-[350px] h-[350px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-            <CyberGlobe />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-cyan-400/30 animate-scan z-30"></div>
+            <div className="absolute w-[400px] h-[400px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+            <ForensicScanner />
           </motion.div>
         </div>
 
