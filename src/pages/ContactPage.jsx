@@ -8,7 +8,7 @@ const ContactPage = () => {
   // 1. Logic for WhatsApp and Buttons
   const openWhatsApp = () => window.open("https://wa.me/919958214909", "_blank");
   const openMaps = () => window.open("https://maps.google.com/?q=8-12-97/2+TNGOs+Colony+Hyderabad", "_blank");
-  const openEmail = () => window.location.href = "mailto:info@cybershaktifoundation.org";
+  const openEmail = () => window.location.href = "mailto:info@crimexintelligence@gmail.com";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const ContactPage = () => {
 
   const topInfoCards = [
     { icon: MapPin, title: "Visit Us", details: ["8-12-97/2 TNGO's Colony, opp.", "Shama Tent House, Lane,", "Hyderabad, Telangana 500077"], iconColor: "text-blue-500", action: openMaps },
-    { icon: Mail, title: "Email Us", details: ["info@cybershaktifoundation.org", "cybershaktifoundation@gmail.com"], iconColor: "text-cyan-400", action: openEmail },
+    { icon: Mail, title: "Email Us", details: ["info@crimexintelligence.org", "crimexintelligence@gmail.com"], iconColor: "text-cyan-400", action: openEmail },
     { icon: Share2, title: "Follow Us", isSocial: true, iconColor: "text-purple-500", action: null }
   ];
 
@@ -26,7 +26,7 @@ const ContactPage = () => {
     { icon: Linkedin, name: "LinkedIn", desc: "Professional updates", color: "text-[#0077b5]", link: "https://linkedin.com" },
     { icon: Instagram, name: "Instagram", desc: "Event highlights", color: "text-[#e4405f]", link: "https://instagram.com" },
     { icon: MessageCircle, name: "WhatsApp", desc: "Instant community", color: "text-[#25d366]", link: "https://wa.me/919958214909" },
-    { icon: Github, name: "Discord", desc: "Tech discussions", color: "text-[#5865f2]", link: "https://discord.com" }
+    // { icon: Github, name: "Discord", desc: "Tech discussions", color: "text-[#5865f2]", link: "https://discord.com" }
   ];
 
   return (
@@ -96,13 +96,13 @@ const ContactPage = () => {
         </div>
 
         {/* 3. SOCIAL MEDIA BOXES (Functional Links) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <div className="flex flex-wrap justify-center gap-6 mb-24">
           {socialGrid.map((social, i) => (
             <motion.div 
               key={i}
               whileHover={{ scale: 1.05 }}
               onClick={() => window.open(social.link, "_blank")}
-              className="bg-[#0d1117]/60 border border-white/5 p-8 rounded-[2rem] text-center group cursor-pointer transition-all hover:bg-white/5"
+              className="bg-[#0d1117]/60 border border-white/5 p-8 rounded-[2rem] text-center group cursor-pointer transition-all hover:bg-white/5 w-full sm:w-72"
             >
               <div className={`w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-xl bg-white/5 ${social.color} group-hover:scale-110 transition-all`}>
                 <social.icon size={28} />

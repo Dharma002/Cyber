@@ -27,7 +27,7 @@ const Navbar = () => {
         
         
         {/* LEFT: LOGO SECTION */}
-<Link to="/" className="flex items-center gap-3 md:gap-5 group shrink-0">
+        <Link to="/" className="flex items-center gap-3 md:gap-5 group shrink-0">
       <div className="relative flex items-center justify-center scale-75 md:scale-100">
         {/* Deep Glow behind logo */}
         <div className="absolute w-[80px] h-[80px] bg-yellow-500/10 rounded-full blur-2xl group-hover:bg-yellow-500/20 transition-all duration-500" />
@@ -99,9 +99,9 @@ const Navbar = () => {
         {/* RIGHT: BUTTONS & MOBILE TOGGLE */}
         <div className="flex items-center gap-2 md:gap-3">
           {/* Registration: Hidden on Mobile, Visible on Desktop */}
-          <Link to="/register" className="hidden md:block">
+          {/* <Link to="/register" className="hidden md:block">
             <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff006e] px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:scale-105 transition-all">Registration</button>
-          </Link>
+          </Link> */}
           
           {/* Login Button: Fixed (Removed 'xs' and made visible on desktop) */}
           <Link to="/login">
