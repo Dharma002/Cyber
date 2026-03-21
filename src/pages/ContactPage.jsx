@@ -77,8 +77,18 @@ const ContactPage = () => {
               <h3 className="text-2xl font-bold mb-4 tracking-tighter uppercase italic">{card.title}</h3>
               {card.isSocial ? (
                 <div className="flex gap-4 mt-2">
-                  {[Linkedin, Instagram, Youtube].map((Icon, idx) => (
-                    <div key={idx} className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-cyan-400 transition-all"><Icon size={18} /></div>
+                  {[
+                    { Icon: Linkedin, link: "https://www.linkedin.com/company/crimex-intelligence/" },
+                    { Icon: Instagram, link: "https://www.instagram.com/crimexintelligence?igsh=b2x3OTlpbWV3YTR5" },
+                    { Icon: Youtube, link: "https://www.youtube.com/@crimexintelligence" }
+                  ].map(({ Icon, link }, idx) => (
+                    <div 
+                      key={idx} 
+                      onClick={(e) => { e.stopPropagation(); window.open(link, "_blank"); }}
+                      className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-cyan-400 transition-all cursor-pointer"
+                    >
+                      <Icon size={18} />
+                    </div>
                   ))}
                 </div>
               ) : (
