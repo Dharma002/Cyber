@@ -110,7 +110,7 @@ const MembersPage = () => {
     },
     {
       name: "Mr. Anmol Kumar",
-      role: "",
+      role: "Certified Cyber Criminology",
       company: "Crimex intelligence",
       image: "/anmol.jpeg",
       tags: ["Leadership", "Innovation", "Research"],
