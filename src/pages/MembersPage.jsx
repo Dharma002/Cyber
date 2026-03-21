@@ -63,12 +63,12 @@ const TeamCard = ({ name, role, image, tags, company, socials }) => (
         </motion.a>
 
         {/* WhatsApp - Mobile number link format: https://wa.me/number */}
-        <motion.a 
+        {/*<motion.a 
           href={socials.whatsapp} target="_blank" rel="noopener noreferrer"
           whileHover={{ y: -3, scale: 1.2 }} className="cursor-pointer group/icon"
         >
           <MessageSquare className="w-5 h-5 text-slate-500 group-hover/icon:text-green-500 transition-colors" />
-        </motion.a>
+        </motion.a>*/}
 
         {/* Instagram */}
         <motion.a 
@@ -93,30 +93,32 @@ const TeamCard = ({ name, role, image, tags, company, socials }) => (
 const MembersPage = () => {
   // 3. Updated data with actual links
   const team = [
-    {
-      name: "Mr. Anmol Kumar",
-      role: "President & Director",
-      company: "Crimex intelligence",
-      image: "/anmol.jpeg",
-      tags: ["Leadership", "Innovation", "Research"],
-      socials: {
-        linkedin: "https://linkedin.com/in/Anmol Kumar",
-        whatsapp: "https://wa.me/918265826528", // Format: 91 + phone number
-        instagram: "https://instagram.com/anmolkumar_techlab",
-        email: "info@cybershaktifoundation.org"
-      }
-    },
+
     {
       name: "Ms. Ayushi Singh",
-      role: "Co-Founder",
+      role: "Founder",
       company: "Crimex intelligence",
       image: "/ayushi.jpeg",
       tags: ["Security Ops", "Intelligence", "Vision"],
       socials: {
-        linkedin: "https://linkedin.com/in/yourprofile",
-        whatsapp: "https://wa.me/919958214909",
-        instagram: "https://instagram.com/yourprofile",
+        linkedin: "https://linkedin.com/in/CrimeX Intelligence",
+        //whatsapp: "https://wa.me/919958214909",
+        instagram: "https://instagram.com/ayushi._.techlab",
         email: "ayushi@crimex.com"
+      }
+    
+    },
+    {
+      name: "Mr. Anmol Kumar",
+      role: "",
+      company: "Crimex intelligence",
+      image: "/anmol.jpeg",
+      tags: ["Leadership", "Innovation", "Research"],
+      socials: {
+        linkedin: "https://www.linkedin.com/in/anmol-kumar-778a66214/",
+        whatsapp: "https://wa.me/918265826528", // Format: 91 + phone number
+        instagram: "https://instagram.com/anmolkumar_techlab",
+        email: "info@cybershaktifoundation.org"
       }
     }
   ];
