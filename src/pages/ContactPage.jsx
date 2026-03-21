@@ -23,10 +23,10 @@ const ContactPage = () => {
   ];
 
   const socialGrid = [
-    { icon: Linkedin, name: "LinkedIn", desc: "Professional updates", color: "text-[#0077b5]", link: "https://linkedin.com" },
-    { icon: Instagram, name: "Instagram", desc: "Event highlights", color: "text-[#e4405f]", link: "https://instagram.com" },
+    { icon: Linkedin, name: "LinkedIn", desc: "Professional updates", color: "text-[#0077b5]", link: "https://www.linkedin.com/company/crimex-intelligence/" },
+    { icon: Instagram, name: "Instagram", desc: "Event highlights", color: "text-[#e4405f]", link: "https://www.instagram.com/crimexintelligence?igsh=b2x3OTlpbWV3YTR5" },
     { icon: MessageCircle, name: "WhatsApp", desc: "Instant community", color: "text-[#25d366]", link: "https://wa.me/919958214909" },
-    // { icon: Github, name: "Discord", desc: "Tech discussions", color: "text-[#5865f2]", link: "https://discord.com" }
+    //{ icon: Github, name: "Discord", desc: "Tech discussions", color: "text-[#5865f2]", link: "https://discord.com" }
   ];
 
   return (
