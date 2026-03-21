@@ -11,6 +11,7 @@ import EventsPage from './pages/EventsPage';
 import MembersPage from './pages/MembersPage';
 import InternshipPage from './pages/InternshipPage';
 import RegistrationPage from './pages/RegistrationPage';
+import ApplyPage from './pages/ApplyPage';
 import LoginPage from './pages/LoginPage';
 import ContactPage from './pages/ContactPage';
 
@@ -40,6 +41,7 @@ const AnimatedRoutes = () => {
         
         {/* Specialized Pages */}
         <Route path="/internship" element={<InternshipPage />} />
+        <Route path="/apply" element={<ApplyPage />} />
         
         {/* Auth System */}
         <Route path="/register" element={<RegistrationPage />} />

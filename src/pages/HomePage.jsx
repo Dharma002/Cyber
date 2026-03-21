@@ -95,11 +95,11 @@ const HomePage = () => {
               Elevating digital defense through <span className="text-white">advanced cognitive intelligence</span>. We don't just protect data; we architect the future of cyber immunity.
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
-              <Link to="/register">
-               <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff006e] px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:scale-105 transition-all">Apply Now</button>
-              </Link>
-              
+            {/* CTA Buttons */}
+            <div className="flex items-center gap-6 mt-12">
+              <Link to="/apply" className="px-10 py-4 md:px-12 md:py-5 bg-gradient-to-r from-red-500 to-pink-600 rounded-full text-white font-black uppercase text-[10px] md:text-xs tracking-widest hover:scale-105 transition-all shadow-[0_20px_40px_rgba(239,68,68,0.3)]">
+                Apply Now
+              </Link>  
              <div className="flex items-center -space-x-3">
   {/* Colorful User Avatars */}
   {[1, 2, 3, 4].map((i) => (
