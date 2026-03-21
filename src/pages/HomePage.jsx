@@ -10,14 +10,14 @@ const HomePage = () => {
   // State to track which card is expanded
   const [expandedIndex, setExpandedIndex] = useState(null);
 
-  const partners = [
-    { name: "Partner 1", logo: "/dp.png" },
-    { name: "Partner 2", logo: "/cy.png" },
-   // { name: "Partner 3", logo: "/logo.png" },
-    { name: "Partner 4", logo: "/mc.png" },
-    { name: "Partner 5", logo: "/rk.png" },
-    { name: "Partner 6", logo: "/v2.png" },
-  ];
+  // const partners = [
+  //   { name: "Partner 1", logo: "/dp.png" },
+  //   { name: "Partner 2", logo: "/cy.png" },
+  //  { name: "Partner 3", logo: "/logo.png" },
+  //   { name: "Partner 4", logo: "/mc.png" },
+  //   { name: "Partner 5", logo: "/rk.png" },
+  //   { name: "Partner 6", logo: "/v2.png" },
+  // ];
 
   const features = [
     { 
@@ -97,7 +97,7 @@ const HomePage = () => {
 
             <div className="flex flex-wrap items-center gap-6 justify-center lg:justify-start">
               <Link to="/register">
-               <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff006e] px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:scale-105 transition-all">Registration</button>
+               <button className="bg-gradient-to-r from-[#ff4d00] to-[#ff006e] px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:scale-105 transition-all">Apply Now</button>
               </Link>
               
              <div className="flex items-center -space-x-3">
@@ -254,7 +254,7 @@ const HomePage = () => {
         </section>
 
         {/* --- OUR PARTNERS SECTION --- */}
-        <section className="relative z-20 py-24 bg-black/40 border-y border-white/5 overflow-hidden">
+        {/* <section className="relative z-20 py-24 bg-black/40 border-y border-white/5 overflow-hidden">
           <div className="text-center mb-16">
             <span className="text-cyan-500 font-black text-[9px] tracking-[0.4em] uppercase mb-4 block">TRUSTED COLLABORATIONS</span>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic leading-tight">
@@ -286,7 +286,7 @@ const HomePage = () => {
               ))}
             </motion.div>
           </div>
-        </section>
+        </section> */}
 
         {/* --- JOIN COMMUNITY CTA --- */}
         <section className="relative z-20 py-24 px-6 text-center">
