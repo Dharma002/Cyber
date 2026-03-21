@@ -53,7 +53,7 @@ const Footer = () => {
 
             <div className="leading-tight">
               <span className="font-black text-2xl tracking-tighter uppercase italic text-white block group-hover/footer-logo:text-cyan-400 transition-colors">
-                CRIMEX <span className="text-cyan-500">INTEL</span>
+                CRIMEX <span className="text-cyan-500">INTELLIGENCE</span>
               </span>
             </div>
           </Link>
@@ -64,16 +64,16 @@ const Footer = () => {
 
           {/* SOCIAL LINKS */}
           <div className="flex gap-4">
-            <button 
+           {/* <button 
               onClick={openWhatsApp} 
               className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-[#25D366] hover:text-[#25D366] hover:bg-[#25D366]/5 hover:-translate-y-1 transition-all duration-300"
               title="WhatsApp Support"
             >
               <MessageCircle size={20}/>
-            </button>
+            </button> */}
 
             <a 
-              href="https://linkedin.com/company/Anmol Kumar" 
+              href="https://linkedin.com/company/crimex-intelligence" 
               target="_blank" rel="noopener noreferrer" 
               className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 hover:-translate-y-1 transition-all duration-300"
             >
@@ -81,7 +81,7 @@ const Footer = () => {
             </a>
 
             <a 
-              href="https://instagram.com/anmolkumar_techlab" 
+              href="https://instagram.com/crimexintelligence" 
               target="_blank" rel="noopener noreferrer" 
               className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-pink-500/50 hover:text-pink-500 hover:bg-pink-500/5 hover:-translate-y-1 transition-all duration-300"
             >
@@ -89,7 +89,7 @@ const Footer = () => {
             </a>
 
             {/* FIXED MAIL BUTTON */}
-            <button 
+            {/*<button 
               onClick={handleEmailClick}
               className="relative w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 text-slate-400 hover:border-red-500/50 hover:text-red-500 hover:bg-red-500/5 hover:-translate-y-1 transition-all duration-300"
             >
@@ -97,7 +97,7 @@ const Footer = () => {
               {copied && (
                 <span className="absolute -top-10 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] py-1 px-2 rounded font-bold uppercase tracking-widest">Copied!</span>
               )}
-            </button>
+            </button>*/}
           </div>
         </div>
 
