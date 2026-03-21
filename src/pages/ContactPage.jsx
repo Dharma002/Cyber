@@ -17,7 +17,7 @@ const ContactPage = () => {
   };
 
   const topInfoCards = [
-    { icon: MapPin, title: "Visit Us", details: ["8-12-97/2 TNGO's Colony, opp.", "Shama Tent House, Lane,", "Hyderabad, Telangana 500077"], iconColor: "text-blue-500", action: openMaps },
+    { icon: MapPin, title: "Visit Us", details: ["Flat no 506 - 5th Floor Grand Plaza Raj Nagar Extension , Ghaziabad"], iconColor: "text-blue-500", action: openMaps },
     { icon: Mail, title: "Email Us", details: ["info@crimexintelligence.org", "crimexintelligence@gmail.com"], iconColor: "text-cyan-400", action: openEmail },
     { icon: Share2, title: "Follow Us", isSocial: true, iconColor: "text-purple-500", action: null }
   ];
