@@ -46,7 +46,7 @@ const RegistrationPage = () => {
                 <h1 className="text-7xl font-[1000] text-white uppercase italic tracking-tighter leading-[0.9]">
                   Agent <br /> <span className="text-[#00f2ea]">Portal</span>
                 </h1>
-                <p className="mt-6 text-gray-500 text-xs font-bold uppercase leading-relaxed tracking-wider">
+                <p className="mt-6 text-gray-700 text-xs font-bold uppercase leading-relaxed tracking-wider">
                   Deploy your digital identity into the secure grid. Authorized agents only. 
                 </p>
             </div>
@@ -81,7 +81,7 @@ const RegistrationPage = () => {
                     </div>
                     <div className="space-y-2">
                         <h2 className="text-4xl font-black text-white uppercase italic">Access Granted</h2>
-                        <p className="text-gray-400 text-[10px] font-mono tracking-[0.2em] uppercase">Welcome to the network, Agent {formData.name}</p>
+                        <p className="text-gray-600 text-[10px] font-mono tracking-[0.2em] uppercase">Welcome to the network, Agent {formData.name}</p>
                     </div>
 
                     <motion.button 
@@ -103,7 +103,7 @@ const RegistrationPage = () => {
                   >
                     <div className="grid md:grid-cols-1 gap-6">
                       <div className="space-y-2 group">
-                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Full_Name</label>
+                        <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest ml-1">Full_Name</label>
                         <div className="relative">
                           <User className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
                           <input required name="name" value={formData.name} onChange={handleChange} type="text" placeholder="GHOST_OPERATOR" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
@@ -111,7 +111,7 @@ const RegistrationPage = () => {
                       </div>
 
                       <div className="space-y-2 group">
-                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Secure_Email</label>
+                        <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest ml-1">Secure_Email</label>
                         <div className="relative">
                           <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
                           <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="AGENT@GRID.SECURE" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
@@ -119,7 +119,7 @@ const RegistrationPage = () => {
                       </div>
 
                       <div className="space-y-2 group">
-                        <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Comms_Line</label>
+                        <label className="text-[10px] font-black text-gray-700 uppercase tracking-widest ml-1">Comms_Line</label>
                         <div className="relative">
                           <Phone className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-[#00f2ea]" size={18} />
                           <input required name="phone" value={formData.phone} onChange={handleChange} type="tel" placeholder="+91 XXXX-XXXX" className="w-full bg-white/5 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-sm focus:outline-none focus:border-[#00f2ea]/50 text-white font-mono" />
@@ -157,7 +157,7 @@ const RegistrationPage = () => {
                             <div className="w-1 h-8 bg-gray-700 rounded-full" />
                             <div>
                                 <p className="text-[9px] text-white font-bold uppercase">New Agent Joined</p>
-                                <p className="text-[8px] text-gray-500 font-mono">ID: 0x992{i}... Lucknow_Node</p>
+                                <p className="text-[8px] text-gray-700 font-mono">ID: 0x992{i}... Lucknow_Node</p>
                             </div>
                         </div>
                     ))}
@@ -167,7 +167,7 @@ const RegistrationPage = () => {
             <div className="p-6 rounded-[2rem] bg-[#00f2ea]/5 border border-[#00f2ea]/20">
                 <Cpu size={20} className="text-[#00f2ea] mb-3" />
                 <h4 className="text-white font-black text-xs uppercase italic tracking-tighter">System Ready</h4>
-                <p className="text-gray-500 text-[9px] uppercase mt-1 leading-relaxed">All encrypted channels are open for enrollment. Server load: 12%.</p>
+                <p className="text-gray-700 text-[9px] uppercase mt-1 leading-relaxed">All encrypted channels are open for enrollment. Server load: 12%.</p>
             </div>
         </div>
 

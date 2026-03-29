@@ -1,154 +1,132 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, Terminal, MapPin, Instagram, Linkedin, Youtube, MessageCircle, Share2, Github } from 'lucide-react';
+import { Mail, Send, MapPin, Instagram, Linkedin, Youtube, MessageCircle, Share2, Phone, Globe, ArrowRight } from 'lucide-react';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-  // 1. Logic for WhatsApp and Buttons
+  // Functional Handlers
   const openWhatsApp = () => window.open("https://wa.me/919958214909", "_blank");
-  const openMaps = () => window.open("https://maps.google.com/?q=8-12-97/2+TNGOs+Colony+Hyderabad", "_blank");
-  const openEmail = () => window.location.href = "mailto:info@crimexintelligence@gmail.com";
+  const openMaps = () => window.open("https://maps.google.com/?q=Raj+Nagar+Extension+Ghaziabad", "_blank");
+  const openEmail = () => window.location.href = "mailto:info@crimexintelligence.org";
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`SIGNAL TRANSMITTED!\nIdentity: ${formData.name}\nStatus: Sent to Core.`);
+    alert(`Thank you ${formData.name}! Your inquiry has been received. Our team will contact you shortly.`);
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const topInfoCards = [
-    { icon: MapPin, title: "Visit Us", details: ["Flat no 506 - 5th Floor Grand Plaza Raj Nagar Extension , Ghaziabad"], iconColor: "text-blue-500", action: openMaps },
-    { icon: Mail, title: "Email Us", details: ["info@crimexintelligence.org", "crimexintelligence@gmail.com"], iconColor: "text-cyan-400", action: openEmail },
-    { icon: Share2, title: "Follow Us", isSocial: true, iconColor: "text-purple-500", action: null }
-  ];
-
-  const socialGrid = [
-    { icon: Linkedin, name: "LinkedIn", desc: "Professional updates", color: "text-[#0077b5]", link: "https://www.linkedin.com/company/crimex-intelligence/" },
-    { icon: Instagram, name: "Instagram", desc: "Event highlights", color: "text-[#e4405f]", link: "https://www.instagram.com/crimexintelligence?igsh=b2x3OTlpbWV3YTR5" },
-    { icon: MessageCircle, name: "WhatsApp", desc: "Instant community", color: "text-[#25d366]", link: "https://wa.me/919958214909" },
-    //{ icon: Github, name: "Discord", desc: "Tech discussions", color: "text-[#5865f2]", link: "https://discord.com" }
+    { icon: MapPin, title: "Our Location", details: ["Flat no 506, 5th Floor", "Grand Plaza, Raj Nagar Ext.", "Ghaziabad, UP"], color: "text-blue-600", action: openMaps },
+    { icon: Phone, title: "Call Support", details: ["+91 9958214909", "011-47074263"], color: "text-green-600", action: null },
+    { icon: Mail, title: "Official Email", details: ["info@crimexintelligence.org", "crimexintelligence@gmail.com"], color: "text-red-600", action: openEmail }
   ];
 
   return (
     <motion.div 
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
-      className="min-h-screen bg-[#02040a] text-white pt-40 pb-20 px-6 relative overflow-hidden"
+      className="min-h-screen bg-[#f8fafc] text-gray-900 pt-32 pb-20 px-6 relative overflow-hidden"
     >
-      
-      {/* --- FIXED: FULL SCREEN MATRIX RAIN (Bich mein bhi chalega) --- */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ y: -1000 }}
-            animate={{ y: 1000 }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 5
-            }}
-            className="absolute font-mono text-[10px] text-cyan-500/40 whitespace-nowrap"
-            style={{ 
-                left: `${(i * 3.33)}%`, // Poori screen pe spread karne ke liye
-                writingMode: 'vertical-rl' 
-            }}
-          >
-            0 1 0 1 1 0 0 1 0 1 0 CRIMEX_INTEL_NODE_V3 SECURE_ACCESS_0x77
-          </motion.div>
-        ))}
+      {/* Subtle Professional Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-blue-50 to-transparent"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/20 blur-[150px] rounded-full"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* 1. TOP THREE BOXES */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        {/* HEADER SECTION */}
+        <div className="text-center mb-16 space-y-4">
+            <motion.div initial={{y:-20}} animate={{y:0}} className="inline-flex items-center gap-2 bg-white border border-gray-100 px-4 py-1.5 rounded-full shadow-sm text-[10px] font-bold text-[#004a8e] uppercase tracking-widest">
+                <Globe size={14} /> Get in Touch with Experts
+            </motion.div>
+            <h1 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-[#004a8e]">
+                Contact <span className="text-gray-900">Us</span>
+            </h1>
+            <p className="text-gray-700 font-medium max-w-2xl mx-auto uppercase text-[10px] tracking-[0.3em]">Institutional Support & Inquiry Center</p>
+            <div className="w-20 h-1 bg-[#ffc107] mx-auto rounded-full"></div>
+        </div>
+
+        {/* 1. TOP INFO CARDS */}
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {topInfoCards.map((card, i) => (
             <motion.div 
               key={i} 
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -5 }}
               onClick={card.action}
-              className="bg-[#0d1117]/90 backdrop-blur-xl border border-white/5 p-10 rounded-[2.5rem] text-center flex flex-col items-center shadow-2xl transition-all cursor-pointer group"
+              className="bg-white border border-gray-100 p-8 rounded-[2rem] text-center flex flex-col items-center shadow-xl shadow-blue-900/5 transition-all cursor-pointer group"
             >
-              <div className={`w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6 ${card.iconColor} group-hover:scale-110 transition-all`}>
-                <card.icon size={32} />
+              <div className={`w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6 ${card.color} group-hover:bg-[#004a8e] group-hover:text-white transition-all duration-300`}>
+                <card.icon size={30} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 tracking-tighter uppercase italic">{card.title}</h3>
-              {card.isSocial ? (
-                <div className="flex gap-4 mt-2">
-                  {[
-                    { Icon: Linkedin, link: "https://www.linkedin.com/company/crimex-intelligence/" },
-                    { Icon: Instagram, link: "https://www.instagram.com/crimexintelligence?igsh=b2x3OTlpbWV3YTR5" },
-                    { Icon: Youtube, link: "https://www.youtube.com/@crimexintelligence" }
-                  ].map(({ Icon, link }, idx) => (
-                    <div 
-                      key={idx} 
-                      onClick={(e) => { e.stopPropagation(); window.open(link, "_blank"); }}
-                      className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-cyan-400 transition-all cursor-pointer"
-                    >
-                      <Icon size={18} />
+              <h3 className="text-xl font-bold mb-3 text-gray-900 uppercase tracking-tight">{card.title}</h3>
+              {card.details.map((line, idx) => (
+                <p key={idx} className="text-gray-700 text-sm font-semibold leading-relaxed">{line}</p>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* 2. FORM & SOCIAL SECTION */}
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+            
+            {/* LEFT SIDE: Text & Social */}
+            <div className="lg:col-span-5 space-y-10">
+                <div className="space-y-6">
+                    <h3 className="text-4xl font-extrabold text-[#004a8e] uppercase leading-tight">
+                        Send us a <br /><span className="text-gray-600">Message</span>
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed font-medium text-lg italic">
+                        "Whether you are a student seeking guidance or an organization requiring forensic consultation, our experts are here to help."
+                    </p>
+                </div>
+
+                {/* Social Connect (Clean SIFS Style) */}
+                <div className="space-y-4">
+                    <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest">Connect with us online</p>
+                    <div className="flex gap-4">
+                        {[
+                            { Icon: Linkedin, link: "https://linkedin.com", color: "hover:bg-blue-700" },
+                            { Icon: Instagram, link: "https://instagram.com", color: "hover:bg-pink-600" },
+                            { Icon: Youtube, link: "https://youtube.com", color: "hover:bg-red-600" }
+                        ].map(({ Icon, link, color }, idx) => (
+                            <a 
+                                key={idx} 
+                                href={link} target="_blank" rel="noreferrer"
+                                className={`w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-600 hover:text-white ${color} transition-all duration-300 shadow-sm`}
+                            >
+                                <Icon size={20} />
+                            </a>
+                        ))}
                     </div>
-                  ))}
                 </div>
-              ) : (
-                card.details.map((line, idx) => <p key={idx} className="text-gray-400 text-sm mb-1 font-mono">{line}</p>)
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* 2. CONNECT WITH US */}
-        <div className="text-center mb-12">
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter italic">
-            CONNECT <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">WITH US</span>
-          </h2>
-        </div>
-
-        {/* 3. SOCIAL MEDIA BOXES (Functional Links) */}
-        <div className="flex flex-wrap justify-center gap-6 mb-24">
-          {socialGrid.map((social, i) => (
-            <motion.div 
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => window.open(social.link, "_blank")}
-              className="bg-[#0d1117]/60 border border-white/5 p-8 rounded-[2rem] text-center group cursor-pointer transition-all hover:bg-white/5 w-full sm:w-72"
-            >
-              <div className={`w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-xl bg-white/5 ${social.color} group-hover:scale-110 transition-all`}>
-                <social.icon size={28} />
-              </div>
-              <h4 className="font-bold text-lg mb-1 uppercase tracking-tighter">{social.name}</h4>
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-mono">{social.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* 4. FORM SECTION */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start mt-20">
-            <div className="lg:col-span-5">
-                <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-[2px] bg-cyan-500"></div>
-                    <span className="text-cyan-500 font-mono text-xs font-black tracking-[0.4em] uppercase">Signal_Terminal</span>
-                </div>
-                <h3 className="text-6xl font-black italic uppercase leading-[0.9] mb-6">GET IN <br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">TOUCH</span></h3>
-                <p className="text-gray-400 leading-relaxed mb-8 max-w-sm font-mono text-sm">Establish a secure connection with our intelligence core. 24/7 technical surveillance active.</p>
             </div>
 
+            {/* RIGHT SIDE: PROFESSIONAL FORM */}
             <div className="lg:col-span-7">
-                <div className="bg-[#0d1117]/90 backdrop-blur-2xl border border-white/10 p-8 md:p-12 rounded-[3.5rem] shadow-2xl relative">
-                  <div className="absolute -top-4 left-10 bg-cyan-500 text-black px-6 py-1.5 text-[10px] font-black uppercase rounded-full flex items-center gap-2">
-                    <Terminal size={14} /> Transmit_Encrypted_Data
-                  </div>
-
+                <div className="bg-white border border-gray-100 p-8 md:p-12 rounded-[3rem] shadow-2xl shadow-blue-900/10 relative">
                   <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-                    <input required type="text" value={formData.name} onChange={(e)=>setFormData({...formData, name:e.target.value})} placeholder="Identity_Name" className="w-full bg-black/50 border border-white/10 p-4 rounded-2xl focus:border-cyan-500 outline-none text-white font-mono text-sm" />
-                    <input required type="email" value={formData.email} onChange={(e)=>setFormData({...formData, email:e.target.value})} placeholder="Signal_Email" className="w-full bg-black/50 border border-white/10 p-4 rounded-2xl focus:border-cyan-500 outline-none text-white font-mono text-sm" />
-                    <input required type="text" value={formData.subject} onChange={(e)=>setFormData({...formData, subject:e.target.value})} placeholder="Subject_Protocol" className="w-full md:col-span-2 bg-black/50 border border-white/10 p-4 rounded-2xl focus:border-cyan-500 outline-none text-white font-mono text-sm" />
-                    <textarea required rows="4" value={formData.message} onChange={(e)=>setFormData({...formData, message:e.target.value})} placeholder="Message_Payload" className="w-full md:col-span-2 bg-black/50 border border-white/10 p-4 rounded-2xl focus:border-cyan-500 outline-none text-white font-mono text-sm resize-none"></textarea>
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-600 uppercase ml-2 tracking-widest">Full Name</label>
+                        <input required type="text" value={formData.name} onChange={(e)=>setFormData({...formData, name:e.target.value})} placeholder="John Doe" className="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl focus:border-[#004a8e] outline-none text-gray-900 font-semibold text-sm transition-all" />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-600 uppercase ml-2 tracking-widest">Email Address</label>
+                        <input required type="email" value={formData.email} onChange={(e)=>setFormData({...formData, email:e.target.value})} placeholder="example@mail.com" className="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl focus:border-[#004a8e] outline-none text-gray-900 font-semibold text-sm transition-all" />
+                    </div>
+                    <div className="md:col-span-2 space-y-2">
+                        <label className="text-[10px] font-bold text-gray-600 uppercase ml-2 tracking-widest">Subject</label>
+                        <input required type="text" value={formData.subject} onChange={(e)=>setFormData({...formData, subject:e.target.value})} placeholder="Inquiry about Forensic Course" className="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl focus:border-[#004a8e] outline-none text-gray-900 font-semibold text-sm transition-all" />
+                    </div>
+                    <div className="md:col-span-2 space-y-2">
+                        <label className="text-[10px] font-bold text-gray-600 uppercase ml-2 tracking-widest">Message</label>
+                        <textarea required rows="4" value={formData.message} onChange={(e)=>setFormData({...formData, message:e.target.value})} placeholder="How can we assist you today?" className="w-full bg-gray-50 border border-gray-100 p-4 rounded-xl focus:border-[#004a8e] outline-none text-gray-900 font-semibold text-sm resize-none transition-all"></textarea>
+                    </div>
 
                     <div className="md:col-span-2 pt-4">
-                      <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="w-full bg-[#00f2ea] text-black font-black py-5 rounded-2xl flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(0,242,234,0.5)] transition-all uppercase tracking-widest text-xs">
-                        SEND SIGNAL <Send size={18} />
+                      <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }} type="submit" className="w-full bg-[#004a8e] text-white font-bold py-5 rounded-xl flex items-center justify-center gap-3 hover:bg-[#003366] transition-all uppercase tracking-widest text-xs shadow-lg shadow-blue-900/20">
+                        Submit Inquiry <ArrowRight size={18} />
                       </motion.button>
                     </div>
                   </form>
@@ -157,10 +135,10 @@ const ContactPage = () => {
         </div>
       </div>
 
-      {/* --- Floating WhatsApp Functional Button --- */}
+      {/* Floating WhatsApp Button */}
       <div 
         onClick={openWhatsApp}
-        className="fixed bottom-8 right-8 w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(37,211,102,0.4)] cursor-pointer hover:scale-110 transition-all z-[100]"
+        className="fixed bottom-8 right-8 w-16 h-16 bg-[#25d366] rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 cursor-pointer hover:scale-110 transition-all z-[100]"
       >
         <MessageCircle size={32} color="white" />
       </div>

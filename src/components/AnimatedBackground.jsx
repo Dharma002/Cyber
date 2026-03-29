@@ -1,78 +1,68 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const AnimatedBackground = () => {
   const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -500]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -300]);
   
-  // Deterministic particle generation
+  // Deterministic particle generation for a professional look
   const particles = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => ({
+    return Array.from({ length: 25 }).map((_, i) => ({
       id: i,
-      size: Math.abs(Math.sin(i)) * 4 + 2,
+      size: Math.abs(Math.sin(i)) * 10 + 5,
       top: `${(Math.abs(Math.cos(i * 7)) * 100)}%`,
       left: `${(Math.abs(Math.sin(i * 13)) * 100)}%`,
-      duration: Math.abs(Math.sin(i * 3)) * 10 + 10,
+      duration: Math.abs(Math.sin(i * 3)) * 20 + 20, // Slower movement
       delay: Math.abs(Math.cos(i * 5)) * 5,
     }));
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 bg-[#00020a] overflow-hidden pointer-events-none">
-      {/* 1. MOVING GRID SYSTEM */}
+    <div className="fixed inset-0 z-0 bg-[#f8fafc] overflow-hidden pointer-events-none">
+      
+      {/* 1. PROFESSIONAL SUBTLE GRID */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute inset-0 opacity-[0.15]"
-        initial={{ backgroundPosition: '0 0' }}
-        animate={{ backgroundPosition: '0 50px' }}
-        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 opacity-[0.4]"
       >
-        <div className="w-full h-[200%] bg-[linear-gradient(#1e293b_1px,transparent_1px),linear-gradient(90deg,#1e293b_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+        <div className="w-full h-[200%] bg-[linear-gradient(#e2e8f0_1px,transparent_1px),linear-gradient(90deg,#e2e8f0_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </motion.div>
 
-      {/* 2. DYNAMIC NEON GLOWS */}
+      {/* 2. SOFT INSTITUTIONAL GLOWS (Blue Tones) */}
       <motion.div 
         animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1],
-          x: [0, 50, 0],
-          y: [0, -30, 0]
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3],
+          x: [0, 30, 0],
         }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-600/20 blur-[150px] rounded-full"
+        className="absolute top-[-15%] right-[-10%] w-[60%] h-[70%] bg-blue-100 blur-[120px] rounded-full"
       />
       
       <motion.div 
         animate={{ 
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.15, 0.1],
-          x: [0, -40, 0],
-          y: [0, 50, 0]
+          scale: [1.1, 1, 1.1],
+          opacity: [0.2, 0.4, 0.2],
+          x: [0, -30, 0],
+          y: [0, 20, 0]
         }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-600/20 blur-[120px] rounded-full"
+        className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[60%] bg-blue-50 blur-[100px] rounded-full"
       />
 
-      {/* 3. RADIAL SCAN EFFECT */}
-      <motion.div 
-        animate={{ 
-          opacity: [0, 0.3, 0],
-          scale: [0.8, 1.2],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeOut" }}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.1)_0%,transparent_70%)]"
-      />
+      {/* 3. RADIAL LIGHT EFFECT (Focus on Content) */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.8)_100%)]" />
 
-      {/* 4. FLOATING DATA PARTICLES */}
+      {/* 4. FLOATING SOFT ORBS (Instead of Cyber Particles) */}
       <motion.div style={{ y: y2 }} className="absolute inset-0">
         {particles.map((p) => (
           <motion.div
             key={p.id}
-            initial={{ opacity: 0, y: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ 
-              opacity: [0, 0.8, 0],
-              y: -100
+              opacity: [0, 0.4, 0],
+              y: [-20, -120]
             }}
             transition={{ 
               duration: p.duration, 
@@ -86,17 +76,16 @@ const AnimatedBackground = () => {
               left: p.left,
               width: p.size,
               height: p.size,
-              backgroundColor: p.id % 2 === 0 ? '#22d3ee' : '#3b82f6',
+              backgroundColor: p.id % 2 === 0 ? '#bfdbfe' : '#dbeafe', // Very light blues
               borderRadius: '50%',
-              filter: 'blur(1px)',
-              boxShadow: `0 0 10px ${p.id % 2 === 0 ? '#22d3ee' : '#3b82f6'}`,
+              filter: 'blur(4px)',
             }}
           />
         ))}
       </motion.div>
 
-      {/* 5. VIGNETTE OVERLAY */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#00020a_100%)] opacity-60"></div>
+      {/* 5. GRAIN OVERLAY (Premium Paper Texture Feel) */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] contrast-150 pointer-events-none"></div>
     </div>
   );
 };

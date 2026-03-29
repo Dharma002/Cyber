@@ -11,12 +11,14 @@ import EventsPage from './pages/EventsPage';
 import MembersPage from './pages/MembersPage';
 import InternshipPage from './pages/InternshipPage';
 import RegistrationPage from './pages/RegistrationPage';
+import ApplyPage from './pages/ApplyPage';
 import LoginPage from './pages/LoginPage';
 import ContactPage from './pages/ContactPage';
 
 // Components & Layout import
 import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop'; // Scroll reset component
+import Preloader from './components/Preloader'; 
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -40,6 +42,7 @@ const AnimatedRoutes = () => {
         
         {/* Specialized Pages */}
         <Route path="/internship" element={<InternshipPage />} />
+        <Route path="/apply" element={<ApplyPage />} />
         
         {/* Auth System */}
         <Route path="/register" element={<RegistrationPage />} />
@@ -53,6 +56,7 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
+      <Preloader /> 
       {/* 1. ScrollToTop ko Router ke andar sabse upar rakha hai */}
       <ScrollToTop /> 
       

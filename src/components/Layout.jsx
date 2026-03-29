@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         
-        <main className="flex-grow pt-10">
+        <main className="flex-grow pt-0 md:pt-10">
           {children}
         </main>
 
