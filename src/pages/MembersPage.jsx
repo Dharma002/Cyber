@@ -117,14 +117,8 @@ const MembersPage = () => {
             <span className="text-gray-600 font-bold text-[10px] tracking-[0.3em] uppercase">Faculty Directory // 2026</span>
           </motion.div>
           
-<<<<<<< HEAD
           <h2 className="text-4xl md:text-7xl font-extrabold uppercase tracking-tighter text-[#004a8e] leading-tight text-center">
             MEET OUR <span className="text-gray-900 font-light italic">EXPERTS</span>
-=======
-          <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black italic tracking-tighter uppercase leading-none mb-10 text-center whitespace-nowrap">
-            <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">MEET OUR </span>{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)]">TEAM</span>
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
           </h2>
           <p className="text-gray-700 font-medium max-w-xl mx-auto italic text-lg">
              "Guided by a team of industry veterans and forensic researchers dedicated to excellence."

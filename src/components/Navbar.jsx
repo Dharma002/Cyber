@@ -25,7 +25,6 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 w-full z-[100]">
-<<<<<<< HEAD
       {/* 1. SIFS STYLE INTELLIGENCE TICKER (Top Bar) - Restored with Professional Blue */}
       <div className="w-full bg-[#002d58] h-[30px] flex items-center overflow-hidden relative border-b border-white/10">
          <motion.div 
@@ -57,36 +56,6 @@ const Navbar = () => {
       {/* 2. MAIN NAVIGATION (Restored with White/Blue Theme) */}
       <div className="bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-lg px-4 md:px-8">
         <div className="max-w-[1600px] mx-auto h-[75px] md:h-[85px] flex justify-between items-center relative">
-=======
-      {/* 1. MISSION INTELLIGENCE TICKER (Top Bar) */}
-      <div className="w-full bg-cyan-500 h-[28px] flex items-center overflow-hidden relative border-b border-black/20">
-         <motion.div 
-           animate={{ x: [0, -1000] }}
-           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-           className="flex items-center gap-16 whitespace-nowrap px-10"
-         >
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex items-center gap-12 text-[9px] font-black text-black uppercase tracking-[0.2em] italic">
-                 <span className="flex items-center gap-2"><Activity size={12} /> STATUS: <span className="text-white bg-black px-1.5 rounded">OPERATIONAL</span></span>
-                 <span className="opacity-40">//</span>
-                 <span>ACTIVE_NODES: 1,429</span>
-                 <span className="opacity-40">//</span>
-                 <span>THREAT_LEVEL: <span className="text-blue-900">MINIMAL</span></span>
-                 <span className="opacity-40">//</span>
-                 <span>SECURE_LATENCY: 24MS</span>
-                 <span className="opacity-40 cursor-default">|</span>
-              </div>
-            ))}
-         </motion.div>
-         {/* Gradient Overlays for smooth edges */}
-         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-cyan-500 to-transparent pointer-events-none z-10"></div>
-         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-cyan-500 to-transparent pointer-events-none z-10"></div>
-      </div>
-
-      {/* 2. MAIN NAVIGATION (Redesigned with Ticker Support) */}
-      <div className="bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.8)] px-4 md:px-8">
-        <div className="max-w-[1600px] mx-auto h-[75px] md:h-[80px] flex justify-between items-center relative">
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
         
         {/* LEFT: LOGO SECTION (Restored Logic with Blue Theme) */}
         <Link to="/" className="flex items-center gap-4 group shrink-0 relative">
@@ -111,7 +80,6 @@ const Navbar = () => {
             <div className="absolute -inset-2 border border-blue-500/10 rounded-full animate-[spin_20s_linear_infinite] pointer-events-none" />
           </div>
           
-<<<<<<< HEAD
           {/* Branding Text */}
           <div className="hidden md:flex flex-col -space-y-1">
             <h1 className="text-[20px] md:text-[24px] font-black tracking-tighter uppercase italic leading-none">
@@ -121,18 +89,6 @@ const Navbar = () => {
             <div className="flex items-center gap-2 opacity-60">
                <div className="h-[1px] w-6 bg-[#004a8e]"></div>
                <span className="text-[8px] font-mono font-bold tracking-[0.3em] text-[#004a8e] uppercase">Institutional_Hub // V.3.7</span>
-=======
-          <div className="hidden md:flex flex-col -space-y-1">
-            <div className="flex items-center gap-2">
-              <div className="text-[20px] md:text-[24px] font-black tracking-tighter uppercase italic leading-none whitespace-nowrap">
-                <span className="text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">Crimex</span>
-                <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">Intelligence</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
-               <div className="h-[1px] w-6 bg-cyan-500/50"></div>
-               <span className="text-[8px] font-mono font-bold tracking-[0.3em] text-cyan-600 uppercase">Archive_Node // V.3.7</span>
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
             </div>
           </div>
         </Link>
@@ -142,7 +98,7 @@ const Navbar = () => {
           {navLinks.map((item) => (
             <div key={item.name} className="relative py-1" onMouseEnter={() => item.hasDrop && setActiveDropdown(item.name)} onMouseLeave={() => setActiveDropdown(null)}>
               <Link to={item.path} className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300
-                  ${location.pathname === item.path ? 'text-[#004a8e]' : 'text-gray-700 hover:text-[#004a8e]'}`}>
+                  ${location.pathname === item.path ? 'text-[#004a8e]' : 'text-gray-500 hover:text-[#004a8e]'}`}>
                 {item.icon}
                 <span>{item.name}</span>
                 {item.hasDrop && <ChevronDown size={14} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />}
@@ -156,10 +112,10 @@ const Navbar = () => {
                 {item.hasDrop && activeDropdown === item.name && (
                   <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 15 }} className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-2xl z-[110]">
                     <div className="flex flex-col p-2">
-                      <Link to="/courses" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-700 hover:text-[#004a8e] hover:bg-blue-50 rounded-xl transition-all uppercase tracking-wider group">
+                      <Link to="/courses" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-[#004a8e] hover:bg-blue-50 rounded-xl transition-all uppercase tracking-wider group">
                         <BookOpen size={16} className="group-hover:text-[#004a8e]" /> Academy Portal
                       </Link>
-                      <Link to="/contact" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-700 hover:text-[#004a8e] hover:bg-blue-50 rounded-xl transition-all uppercase tracking-wider group">
+                      <Link to="/contact" className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-[#004a8e] hover:bg-blue-50 rounded-xl transition-all uppercase tracking-wider group">
                         <Mail size={16} className="group-hover:text-[#004a8e]" /> Contact Support
                       </Link>
                     </div>
@@ -185,7 +141,7 @@ const Navbar = () => {
           
           {/* MOBILE TOGGLE */}
           <button 
-            className="lg:hidden text-gray-900 p-2.5 bg-gray-50 border border-gray-100 rounded-full hover:bg-blue-50 transition-all z-[120]" 
+            className="lg:hidden text-gray-800 p-2.5 bg-gray-50 border border-gray-100 rounded-full hover:bg-blue-50 transition-all z-[120]" 
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={22} className="text-[#004a8e]" /> : <Menu size={22} />}
@@ -218,16 +174,11 @@ const Navbar = () => {
                             to={link.path} 
                             onClick={closeMenu}
                             className={`flex-grow flex items-center gap-4 p-4 rounded-l-2xl text-sm font-bold uppercase tracking-widest transition-all
-<<<<<<< HEAD
-                              ${location.pathname === link.path ? 'bg-blue-50 text-[#004a8e]' : 'text-gray-600 hover:bg-gray-50'}`}
-=======
-                              ${location.pathname === link.path ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/20' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
+                              ${location.pathname === link.path ? 'bg-blue-50 text-[#004a8e]' : 'text-gray-400 hover:bg-gray-50'}`}
                           >
                             {link.icon}
                             {link.name}
                           </Link>
-<<<<<<< HEAD
                           {link.hasDrop && (
                             <button onClick={() => setMobileSubMenu(mobileSubMenu === link.name ? null : link.name)} className="p-4 bg-gray-50 rounded-r-2xl border-l border-white/5 transition-all">
                                <ChevronDown size={18} className={`${mobileSubMenu === link.name ? 'rotate-180' : ''} text-[#004a8e] transition-transform`} />
@@ -236,48 +187,10 @@ const Navbar = () => {
                         </div>
                         {link.hasDrop && mobileSubMenu === link.name && (
                           <div className="pl-12 py-2 flex flex-col gap-3">
-                             <Link to="/courses" onClick={closeMenu} className="text-xs font-bold text-gray-700 uppercase tracking-wider">Academy Portal</Link>
-                             <Link to="/contact" onClick={closeMenu} className="text-xs font-bold text-gray-700 uppercase tracking-wider">Contact</Link>
+                             <Link to="/courses" onClick={closeMenu} className="text-xs font-bold text-gray-500 uppercase tracking-wider">Academy Portal</Link>
+                             <Link to="/contact" onClick={closeMenu} className="text-xs font-bold text-gray-500 uppercase tracking-wider">Contact</Link>
                           </div>
                         )}
-=======
-                          
-                          {link.hasDrop && (
-                            <button 
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setMobileSubMenu(mobileSubMenu === link.name ? null : link.name);
-                              }}
-                              className={`p-4 rounded-r-2xl border-l border-white/5 transition-all
-                                ${mobileSubMenu === link.name ? 'bg-cyan-500/20 text-cyan-400' : 'text-gray-500 bg-white/5'}`}
-                            >
-                               <ChevronDown size={18} className={`transition-transform duration-300 ${mobileSubMenu === link.name ? 'rotate-180' : ''}`} />
-                            </button>
-                          )}
-                        </div>
-                        
-                        {/* MOBILE SUB-MENU (Accordion) */}
-                        <AnimatePresence>
-                          {link.hasDrop && mobileSubMenu === link.name && (
-                            <motion.div 
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden flex flex-col pl-12 gap-1 mt-2 mb-4"
-                            >
-                              {link.name === 'Services' ? (
-                                <Link to="/courses" onClick={closeMenu} className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-cyan-400 transition-all uppercase tracking-wider">
-                                  <BookOpen size={14} /> Academy Portal
-                                </Link>
-                              ) : (
-                                <Link to="/contact" onClick={closeMenu} className="flex items-center gap-3 p-3 text-[10px] font-bold text-gray-500 hover:text-cyan-400 transition-all uppercase tracking-wider">
-                                  <Mail size={14} /> Contact
-                                </Link>
-                              )}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
                       </div>
                     ))}
                   </div>
@@ -293,13 +206,10 @@ const Navbar = () => {
         </AnimatePresence>
       </div>
      </div>
-<<<<<<< HEAD
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes scan { 0% { top: -100%; } 100% { top: 100%; } }
         .animate-scan { animation: scan 3s linear infinite; }
       `}} />
-=======
->>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
     </header>
   );
 };
