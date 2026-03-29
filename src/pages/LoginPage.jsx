@@ -130,6 +130,21 @@ const LoginPage = () => {
         </motion.div>
       </div>
 
+<<<<<<< HEAD
+=======
+        <div className="mt-8 pt-8 border-t border-white/5 text-center">
+          <p className="text-gray-500 text-[10px] uppercase font-bold">
+            Don't have an account? <Link to="/register" className="text-cyan-500 hover:underline ml-1">Create one Today</Link>
+          </p>
+        </div>
+
+        {/* System HUD element */}
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-20 pointer-events-none">
+          <Terminal size={12} className="text-cyan-500" />
+          <span className="text-[8px] font-mono text-cyan-500 uppercase tracking-widest">Secure_Layer_Active: v3.0</span>
+        </div>
+      </motion.div>
+>>>>>>> fa8b9831cbc75daa64b98b0f1a0be2a4cf394940
     </div>
   );
 };
